@@ -12,22 +12,38 @@
 </head>
 <body>
     <header class="fixed w-full border-b-2 bg-white z-50">
-        <nav class="container mx-auto max-w-[1280px]">
+        <nav class="container mx-auto max-w-[1280px] px-2 relative">
             <div class="nav-bar flex py-4 justify-between">
                 <div class="nav-menu flex items-center gap-4 font-medium">
-                    <div class="logo flex mb-1.5">
-                        <a href="/" class="text-3xl text-sky-600 font-bold flex"><img src="{% static "img/logo3.png" %}" alt="brainhunter" width="32px" class="object-contain">BrainHunter</a>
+                    <div class="mob-menu xl:hidden">
+                        <span id="burgerToggle" class="text-3xl text-sky-900 cursor-pointer"><i class="fa-solid fa-bars"></i></span>
                     </div>
+                    <div class="logo flex mb-1.5">
+                        <a href="{% url 'index_view' %}" class="text-3xl text-sky-600 font-bold flex"><img src="{% static "img/logo3.png" %}" alt="brainhunter" width="32px" class="object-contain">BrainHunter</a>
+                    </div>
+                    <div class="hidden xl:flex gap-4">
+                        <a href="#">Вакансии</a>
+                        <a href="#">Профессии</a>
+                        <a href="#">Компании</a>
+                        <a href="#">Блог</a>
+                        <a href="#">Работодателю</a>
+                    </div>
+                </div>
+                <div class="right-menu sm:flex items-center gap-4 font-medium hidden">
+                    <a href="#"><i class="fa-solid fa-location-dot mr-1"></i>Новокузнецк</a>
+                    <div class="hidden lg:flex items-center gap-4">
+                        <button class="bg-stone-200/80 rounded-lg px-2 py-1">Создать резюме</button>
+                        <a href="{% url 'login_view' %}">Войти</a>
+                    </div>
+                </div>
+            </div>
+            <div class="burger-menu absolute left-0 w-full hidden sm:max-w-[12em]" id="burgerMenu">
+                <div class="flex flex-col gap-1 p-2 bg-sky-600 text-white font-medium w-full">
                     <a href="#">Вакансии</a>
                     <a href="#">Профессии</a>
                     <a href="#">Компании</a>
                     <a href="#">Блог</a>
                     <a href="#">Работодателю</a>
-                </div>
-                <div class="right-menu flex items-center gap-4 font-medium">
-                    <a href="#"><i class="fa-solid fa-location-dot mr-1"></i>Новокузнецк</a>
-                    <button class="bg-stone-200/80 rounded-lg px-2 py-1">Создать резюме</button>
-                    <a href="#">Войти</a>
                 </div>
             </div>
         </nav>
@@ -38,35 +54,41 @@
     </main>
 
     <footer class="bg-sky-950 text-white">
-        <div class="container mx-auto max-w-[1280px]">
-            <div class="top-footer flex border-b-[1px] py-8">
-                <div class="info-line flex flex-col gap-0.5 w-1/5">
+        <div class="container mx-auto max-w-[1280px] px-2">
+            <div class="top-footer flex flex-col md:flex-row border-b-[1px] py-4 md:py-8">
+                <div class="info-line flex flex-col gap-0.5 md:w-1/4 pb-2 lg:w-1/5 text-center md:text-left">
                     <h1 class="font-medium uppercase text-xl tracking-wide">Информация</h1>
-                    <a href="#">О "BrainHunter"</a>
-                    <a href="#">Правила сайта</a>
-                    <a href="#">Контакты</a>
-                    <a href="#">Пресс-служба</a>
-                    <a href="#">Работа у нас</a>
+                    <div class="flex flex-col gap-0.5 max-h-fit overflow-y-hidden">
+                        <a href="#">О "BrainHunter"</a>
+                        <a href="#">Правила сайта</a>
+                        <a href="#">Контакты</a>
+                        <a href="#">Пресс-служба</a>
+                        <a href="#">Работа у нас</a>
+                    </div>
                 </div>
-                <div class="finder-line flex flex-col gap-0.5 w-1/5">
+                <div class="finder-line flex flex-col gap-0.5 md:w-1/4 pb-2 lg:w-1/5 text-center md:text-left">
                     <h1 class="font-medium uppercase text-xl tracking-wide">Соискателям</h1>
-                    <a href="#">Добавить резюме</a>
-                    <a href="#">Поиск вакансий</a>
-                    <a href="#">Каталог компаний</a>
-                    <a href="#">Каталог профессий</a>
-                    <a href="#">Статьи и советы</a>
+                    <div class="flex flex-col gap-0.5 max-h-fit overflow-y-hidden">
+                        <a href="#">Добавить резюме</a>
+                        <a href="#">Поиск вакансий</a>
+                        <a href="#">Каталог компаний</a>
+                        <a href="#">Каталог профессий</a>
+                        <a href="#">Статьи и советы</a>
+                    </div>
                 </div>
-                <div class="giver-line flex flex-col gap-0.5 w-1/5">
+                <div class="giver-line flex flex-col gap-0.5 md:w-1/4 pb-2 lg:w-1/5 text-center md:text-left">
                     <h1 class="font-medium uppercase text-xl tracking-wide">Работодателям</h1>
-                    <a href="#">Разместить вакансии</a>
-                    <a href="#">Найти сотрудников</a>
-                    <a href="#">Прайс-лист</a>
-                    <a href="#">Помощь работодателям</a>
-                    <a href="#">Производственный календарь</a>
+                    <div class="flex flex-col gap-0.5 max-h-fit overflow-y-hidden">
+                        <a href="#">Разместить вакансии</a>
+                        <a href="#">Найти сотрудников</a>
+                        <a href="#">Прайс-лист</a>
+                        <a href="#">Помощь работодателям</a>
+                        <a href="#">Производственный календарь</a>
+                    </div>
                 </div>
-                <div class="mob-app w-2/5 flex flex-col items-end">
-                    <h1 class="font-medium uppercase text-xl tracking-wide">Мобильное приложение</h1>
-                    <div class="flex items-start py-2">
+                <div class="mob-app flex flex-col items-start lg:items-end md:w-1/4 lg:w-2/5">
+                    <h1 class="font-medium uppercase text-xl tracking-wide w-full text-center">Мобильное приложение</h1>
+                    <div class="flex items-start justify-center w-full py-2">
                         <div class="flex flex-col gap-2 px-2">
                             <div class="store-card border-[1px] rounded-lg">
                                 <a href="#"><img src="{% static "img/appstore.svg" %}" alt="appstore"></a>
@@ -78,7 +100,7 @@
                                 <a href="#"><img src="{% static "img/rustore.svg" %}" alt="rustore"></a>
                             </div>
                         </div>
-                        <img class="object-contain rounded-lg" src="{% static "img/qrcode.png" %}" alt="qrcode" width="128px" height="128px">
+                        <img class="object-contain rounded-lg hidden lg:block" src="{% static "img/qrcode.png" %}" alt="qrcode" width="128px" height="128px">
                     </div>
                 </div>
             </div>
@@ -92,5 +114,7 @@
             </div>
         </div>
     </footer>
+
+    <script src="{% static "js/nav.js" %}" type="module"></script>
 </body>
 </html>
