@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}BrainHunter{% endblock title %}
+
+{% load static %}
+
+{% block main %}
+
+    <div class="page-header-form bg-white">
+        <div class="container mx-auto max-w-[1280px]">
+            <h1 class="text-3xl font-semibold py-6">Поиск работы в Новокузнецке</h1>
+            <div class="header-input flex">
+                <div class="group-1 w-full flex relative">
+                    <input type="text" placeholder="Должность или ключевые слова" class="w-full bg-slate-100 px-10 outline-none border-r-2 rounded-l-lg">
+                    <i class="fa-solid fa-magnifying-glass absolute top-3.5 bottom-0 left-3.5 text-gray-500"></i>
+                </div>
+                <div class="group-2 w-full flex relative">
+                    <input type="text" placeholder="Город" class="w-full bg-slate-100 px-10 outline-none border-r-2">
+                    <i class="fa-solid fa-location-dot absolute top-3.5 bottom-0 left-3.5 text-gray-500"></i>
+                </div>
+                <div class="group-3 w-full flex relative">
+                    <input type="text" placeholder="Зарплата от, руб." class="w-full bg-slate-100 px-10 outline-none">
+                    <i class="fa-solid fa-ruble-sign absolute top-3.5 bottom-0 left-3.5 text-gray-500"></i>
+                </div>
+                <div class="group-4 max-w-[15%] w-full flex justify-between items-center">
+                    <div class="bg-stone-100 rounded-tr-lg rounded-br-lg">
+                        <button class="bg-sky-600 text-white rounded-lg py-2 px-8">Найти</button>
+                    </div>
+                    <a href="#" class="text-3xl text-sky-600 ml-4"><i class="fa-solid fa-sliders"></i></a>
+                </div>
+            </div>
+            <div class="header-recomendations py-6 flex">
+                <span class="min-w-fit flex items-center font-medium">Рекомендуем вам:</span>
+                <div class="pl-4 w-full">
+                    <ul class="flex gap-4 overflow-x-hidden">
+                        <li class="min-w-fit px-3 py-1 border-2 border-sky-600 rounded-lg font-medium">Вакансии в Новокузнецке</li>
+                        <li class="min-w-fit px-3 py-1 border-2 border-slate-300 rounded-lg font-medium">Популярные запросы</li>
+                        <li class="min-w-fit px-3 py-1 border-2 border-slate-300  rounded-lg font-medium">Работа на дому</li>
+                        <li class="min-w-fit px-3 py-1 border-2 border-slate-300  rounded-lg font-medium">Работа для студентов</li>
+                        <li class="min-w-fit px-3 py-1 border-2 border-slate-300  rounded-lg font-medium">Работа в офисе</li>
+                        <li class="min-w-fit px-3 py-1 border-2 border-slate-300  rounded-lg font-medium">Работа в торговле</li>
+                        <li class="min-w-fit px-3 py-1 border-2 border-slate-300  rounded-lg font-medium">Работа в продажах</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="work-body">
+        <div class="container mx-auto max-w-[1280px]">
+            
+        </div>
+    </div>
+
+{% endblock main %}
