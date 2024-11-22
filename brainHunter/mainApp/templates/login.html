@@ -6,8 +6,37 @@
 
 {% block main %}
 
-<div>
-    
+<div class="container max-w-[1280px] mx-auto px-4">
+    <div class="auth-block bg-white py-1.5 max-w-[32em] rounded-lg mx-auto my-8">
+        <div class="top-auth flex justify-center border-b-[1px] px-6 py-3">
+            <a href="{% url 'index_view' %}" class="text-3xl text-sky-600 font-bold flex">BrainHunter</a>
+        </div>
+        <div class="auth-content flex flex-col px-6 py-3">
+            <div class="auth-header pb-1">
+                <h1 class="text-lg font-medium">Авторизация</h1>
+            </div>
+            <form>
+                <div class="input-block flex flex-col gap-1 py-1.5">
+                    <label for="phoneNum">Номер телефона</label>
+                    <input id="phoneNum" name="phoneNum" type="text" class="border-2 border-gray-400 rounded-lg py-1 px-2 outline-sky-600/50" placeholder="+7(***)*** **-**" minlength="16" required>
+                </div>
+                <div class="input-block flex flex-col gap-1 py-1.5">
+                    <label for="password">Пароль</label>
+                    <input id="password" name="password" type="password" class="border-2 border-gray-400 rounded-lg py-1 px-2 outline-sky-600/50" placeholder="********" minlength="8" required>
+                </div>
+                <div class="input-block flex py-1.5">
+                    <input type="checkbox" id="rememberUser" name="rememberUser" class="customCheckbox cursor-pointer">
+                    <label for="rememberUser" class="ml-3 cursor-pointer">Запомните меня</label>            
+                </div>
+                <div class="input-block flex flex-col gap-1 py-1.5">
+                    <button id="submit" name="submit" type="submit" class="bg-sky-600 rounded-lg py-1.5 px-3 text-white">Авторизоваться</button>
+                </div>
+            </form>
+        </div>
+        <div class="bottom-auth flex justify-center border-t-[1px] px-6 py-3">
+            <a href="{% url 'reg_view' %}">Еще нет аккаунта? <span class="text-sky-600 font-medium">Зарегистрируйтесь</span></a>
+        </div>
+    </div>
 </div>
 
 {% endblock main %}
