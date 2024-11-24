@@ -24,8 +24,8 @@
                     </div>
                     <div class="hidden xl:flex gap-4">
                         <a href="{% url 'vacancy_search' %}">Вакансии</a>
-                        <a href="#">Профессии</a>
-                        <a href="#">Компании</a>
+                        {% comment %} <a href="#">Профессии</a> {% endcomment %}
+                        <a href="{% url 'creating_vacancy' %}">Компании</a>
                         <a href="#">Блог</a>
                         <a href="#">Работодателю</a>
                     </div>
