@@ -3,12 +3,15 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.hashers import make_password
+from .models import Vacancy
 
 # Create your views here.
 
 
 def index_view(request):
-    return render(request, 'index.html')
+    vacancy = Vacancy.objects.all()[:10]
+
+    return render(request, 'index.html', {'vacancy': vacancy})
 
 
 def login_view(request):

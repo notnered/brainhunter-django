@@ -4,6 +4,8 @@
 
 {% load static %}
 
+{% load humanize %}
+
 {% block main %}
 
     <div class="page-header-form bg-white px-4">
@@ -53,83 +55,35 @@
 
                 <div class="w-full lg:w-3/4 flex flex-col gap-y-4">
 
-                    <div class="job-card bg-white rounded-lg p-4">
-                        <div class="top-card flex justify-between">
-                            <div>
-                                <h1 class="font-medium text-xl">Специалист на обработку почты</h1>
-                                <span>30 000 руб.</span>
+                    {% for vacancy in vacancy %}
+                    
+                        <div class="job-card bg-white rounded-lg p-4">
+                            <div class="top-card flex justify-between">
+                                <div>
+                                    <h1 class="font-medium text-xl">{{ vacancy.title }}</h1>
+                                    <span>{{ vacancy.salary|intcomma }} руб.</span>
+                                </div>
+                                <a href="#" class="text-lg"><i class="fa-regular fa-star"></i></a>
                             </div>
-                            <a href="#" class="text-lg"><i class="fa-regular fa-star"></i></a>
+                            <div class="card-content">
+                                <div class="py-2">
+                                    <p class="line-clamp-3">{{ vacancy.description }}</p>
+                                </div>
+                                <div class="py-1 flex gap-2 flex-wrap">
+                                    <span class="py-1 px-3 bg-purple-200 rounded-3xl text-purple-800 min-w-fit"><i class="fa-solid fa-crown mr-1.5"></i>Вакансия недели</span>
+                                    {% comment %} <span class="py-1 px-3 bg-slate-100 rounded-3xl"><i class="fa-solid fa-graduation-cap mr-1.5"></i>Для студентов</span> {% endcomment %}
+                                </div>
+                                <div class="company-name py-4">
+                                    <h2 class="font-medium">{{ vacancy.company }}</h2>
+                                </div>
+                                <div class="actions flex gap-2 flex-col sm:flex-row">
+                                    <button class="bg-sky-600 min-w-fit px-5 py-2.5 rounded-md text-white font-medium">Откликнуться</button>
+                                    <button class="bg-slate-100 min-w-fit px-5 py-2.5 rounded-md text-black font-medium">Позвонить</button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-content">
-                            <div class="py-2">
-                                <p class="line-clamp-3">TELESTANDARD – аутсорсинговый колл-центр, с опытом реализации проектов в различных сферах бизнеса. Оператором колл-центра у нас может работать любой человек, независимо от специальности и предыдущей профессии</p>
-                            </div>
-                            <div class="py-1 flex gap-2 flex-wrap">
-                                <span class="py-1 px-3 bg-purple-200 rounded-3xl text-purple-800 min-w-fit"><i class="fa-solid fa-crown mr-1.5"></i>Вакансия недели</span>
-                                <span class="py-1 px-3 bg-slate-100 rounded-3xl"><i class="fa-solid fa-graduation-cap mr-1.5"></i>Для студентов</span>
-                            </div>
-                            <div class="company-name py-4">
-                                <h2 class="font-medium">Telestandard</h2>
-                            </div>
-                            <div class="actions flex gap-2 flex-col sm:flex-row">
-                                <button class="bg-sky-600 min-w-fit px-5 py-2.5 rounded-md text-white font-medium">Откликнуться</button>
-                                <button class="bg-slate-100 min-w-fit px-5 py-2.5 rounded-md text-black font-medium">Позвонить</button>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="job-card bg-white rounded-lg p-4">
-                        <div class="top-card flex justify-between">
-                            <div>
-                                <h1 class="font-medium text-xl">Специалист на обработку почты</h1>
-                                <span>30 000 руб.</span>
-                            </div>
-                            <a href="#" class="text-lg"><i class="fa-regular fa-star"></i></a>
-                        </div>
-                        <div class="card-content">
-                            <div class="py-2">
-                                <p class="line-clamp-3">TELESTANDARD – аутсорсинговый колл-центр, с опытом реализации проектов в различных сферах бизнеса. Оператором колл-центра у нас может работать любой человек, независимо от специальности и предыдущей профессии</p>
-                            </div>
-                            <div class="py-1 flex gap-2 flex-wrap">
-                                <span class="py-1 px-3 bg-purple-200 rounded-3xl text-purple-800 min-w-fit"><i class="fa-solid fa-crown mr-1.5"></i>Вакансия недели</span>
-                                <span class="py-1 px-3 bg-slate-100 rounded-3xl"><i class="fa-solid fa-graduation-cap mr-1.5"></i>Для студентов</span>
-                            </div>
-                            <div class="company-name py-4">
-                                <h2 class="font-medium">Telestandard</h2>
-                            </div>
-                            <div class="actions flex gap-2 flex-col sm:flex-row">
-                                <button class="bg-sky-600 min-w-fit px-5 py-2.5 rounded-md text-white font-medium">Откликнуться</button>
-                                <button class="bg-slate-100 min-w-fit px-5 py-2.5 rounded-md text-black font-medium">Позвонить</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="job-card bg-white rounded-lg p-4">
-                        <div class="top-card flex justify-between">
-                            <div>
-                                <h1 class="font-medium text-lg">Специалист на обработку почты</h1>
-                                <span>30 000 руб.</span>
-                            </div>
-                            <a href="#" class="text-xl"><i class="fa-regular fa-star"></i></a>
-                        </div>
-                        <div class="card-content">
-                            <div class="py-2">
-                                <p class="line-clamp-3">TELESTANDARD – аутсорсинговый колл-центр, с опытом реализации проектов в различных сферах бизнеса. Оператором колл-центра у нас может работать любой человек, независимо от специальности и предыдущей профессии</p>
-                            </div>
-                            <div class="py-1 flex gap-2 flex-wrap">
-                                <span class="py-1 px-3 bg-purple-200 rounded-3xl text-purple-800 min-w-fit"><i class="fa-solid fa-crown mr-1.5"></i>Вакансия недели</span>
-                                <span class="py-1 px-3 bg-slate-100 rounded-3xl"><i class="fa-solid fa-graduation-cap mr-1.5"></i>Для студентов</span>
-                            </div>
-                            <div class="company-name py-4">
-                                <h2 class="font-medium">Telestandard</h2>
-                            </div>
-                            <div class="actions flex gap-2 flex-col sm:flex-row">
-                                <button class="bg-sky-600 min-w-fit px-5 py-2.5 rounded-md text-white font-medium">Откликнуться</button>
-                                <button class="bg-slate-100 min-w-fit px-5 py-2.5 rounded-md text-black font-medium">Позвонить</button>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
 
                 </div>
     
