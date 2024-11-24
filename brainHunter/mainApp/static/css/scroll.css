@@ -1,0 +1,4 @@
+.scrollBar {
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+}

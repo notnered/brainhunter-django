@@ -33,16 +33,24 @@
             </div>
             <div class="header-recomendations py-4 md:py-6 flex flex-col sm:flex-row flex-shrink gap-2 flex-auto">
                 <span class="min-w-fit flex items-center justify-center sm:justify-start font-medium">Рекомендуем вам:</span>
-                <div class="pl-4 w-full overflow-x-hidden">
-                    <ul class="flex gap-4 overflow-x-hidden">
-                        <li class="min-w-fit px-3 py-1 border-2 border-sky-600 rounded-lg font-medium">Вакансии в Новокузнецке</li>
-                        <li class="min-w-fit px-3 py-1 border-2 border-slate-300 rounded-lg font-medium">Популярные запросы</li>
-                        <li class="min-w-fit px-3 py-1 border-2 border-slate-300  rounded-lg font-medium">Работа на дому</li>
-                        <li class="min-w-fit px-3 py-1 border-2 border-slate-300  rounded-lg font-medium">Работа для студентов</li>
-                        <li class="min-w-fit px-3 py-1 border-2 border-slate-300  rounded-lg font-medium">Работа в офисе</li>
-                        <li class="min-w-fit px-3 py-1 border-2 border-slate-300  rounded-lg font-medium">Работа в торговле</li>
-                        <li class="min-w-fit px-3 py-1 border-2 border-slate-300  rounded-lg font-medium">Работа в продажах</li>
-                    </ul>
+                <div class="w-full flex overflow-x-hidden relative">
+                    <div id="scrollLeftID" style="display:none" class="h-full aspect-square absolute top-0 left-0 justify-center flex items-center bg-white border-2 rounded-full cursor-pointer z-20">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </div>
+                    <div class="scrollBarFilter z-10 px-4 w-full">
+                        <ul id="scrollBarID" class="flex gap-4 overflow-x-scroll scrollBar mx-auto w-full">
+                            <li class="min-w-fit px-3 py-1 border-2 border-sky-600 rounded-lg font-medium">Вакансии в Новокузнецке</li>
+                            <li class="min-w-fit px-3 py-1 border-2 border-slate-300 rounded-lg font-medium">Популярные запросы</li>
+                            <li class="min-w-fit px-3 py-1 border-2 border-slate-300  rounded-lg font-medium">Работа на дому</li>
+                            <li class="min-w-fit px-3 py-1 border-2 border-slate-300  rounded-lg font-medium">Работа для студентов</li>
+                            <li class="min-w-fit px-3 py-1 border-2 border-slate-300  rounded-lg font-medium">Работа в офисе</li>
+                            <li class="min-w-fit px-3 py-1 border-2 border-slate-300  rounded-lg font-medium">Работа в торговле</li>
+                            <li class="min-w-fit px-3 py-1 border-2 border-slate-300  rounded-lg font-medium">Работа в продажах</li>
+                        </ul>
+                    </div>
+                    <div id="scrollRightID" style="display:none" class="h-full aspect-square absolute top-0 right-0 justify-center flex items-center bg-white border-2 rounded-full cursor-pointer z-20">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
                 </div>
             </div>
         </div>
@@ -57,7 +65,7 @@
 
                     {% for vacancy in vacancy %}
                     
-                        <div class="job-card bg-white rounded-lg p-4">
+                        <div class="job-card bg-white rounded-lg p-4" data-id={{ vacancy.id }}>
                             <div class="top-card flex justify-between">
                                 <div>
                                     <h1 class="font-medium text-xl capitalize">{{ vacancy.title }}</h1>
@@ -132,5 +140,7 @@
 
         </div>
     </div>
+
+    <script src="{% static "js/scroll.js" %}" type="module"></script>
 
 {% endblock main %}
