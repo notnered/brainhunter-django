@@ -12,10 +12,13 @@ def index_view(request):
 
 
 def login_view(request):
+    if request.user.is_authenticated:
+        return redirect('account_view')
+
     if request.method == 'POST':
-        phoneNum = request.POST['phoneNum']
+        username = request.POST['username']
         password = request.POST['password']
-        user = authenticate(request, username = phoneNum, password = password)
+        user = authenticate(request, username = username, password = password)
         if user is not None:
             login(request, user)
             return redirect('account_view')
@@ -27,18 +30,23 @@ def login_view(request):
 
 
 def reg_view(request):
+    if request.user.is_authenticated:
+        return redirect('account_view')
+
     if request.method == 'POST':
+        username = request.POST['username']
         fioUser = request.POST['fioUser']
         password = request.POST['password'].strip()
         phoneNum = request.POST['phoneNum']
         passwordConfirm = request.POST['passwordConfirm'].strip()
         if password != passwordConfirm:
             return HttpResponse('Пароли не совпадают')
-        if User.objects.filter(username = fioUser).exists():
+        if User.objects.filter(username = username).exists():
             return HttpResponse('Пользователь уже существует')
         
         User.objects.create(
-                username = phoneNum,
+                username = username,
+                email = phoneNum,
                 password = make_password(password),
                 first_name = fioUser,
             )
@@ -57,4 +65,4 @@ def resume_view(request):
 def account_view(request):
     
 
-    return render(request, 'account.html')
+    return render(request, 'acc.html')

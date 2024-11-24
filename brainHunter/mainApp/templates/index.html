@@ -6,32 +6,32 @@
 
 {% block main %}
 
-    <div class="page-header-form bg-white">
-        <div class="container mx-auto max-w-[1280px]">
+    <div class="page-header-form bg-white px-4">
+        <div class="container mx-auto max-w-[1280px] px-4">
             <h1 class="text-3xl font-semibold py-6">Поиск работы в Новокузнецке</h1>
-            <div class="header-input flex">
+            <div class="header-input flex gap-y-4 md:flex-row flex-col">
                 <div class="group-1 w-full flex relative">
-                    <input type="text" placeholder="Должность или ключевые слова" class="w-full bg-slate-100 px-10 outline-none border-r-2 rounded-l-lg">
+                    <input type="text" placeholder="Должность или ключевые слова" class="w-full bg-slate-100 px-10 py-3 md:py-0 outline-none rounded-lg md:rounded-r-none md:border-r-2 md:rounded-l-lg">
                     <i class="fa-solid fa-magnifying-glass absolute top-3.5 bottom-0 left-3.5 text-gray-500"></i>
                 </div>
                 <div class="group-2 w-full flex relative">
-                    <input type="text" placeholder="Город" class="w-full bg-slate-100 px-10 outline-none border-r-2">
+                    <input type="text" placeholder="Город" class="w-full bg-slate-100 px-10 outline-none py-3 rounded-lg md:rounded-none md:py-0 md:border-r-2">
                     <i class="fa-solid fa-location-dot absolute top-3.5 bottom-0 left-3.5 text-gray-500"></i>
                 </div>
                 <div class="group-3 w-full flex relative">
-                    <input type="text" placeholder="Зарплата от, руб." class="w-full bg-slate-100 px-10 outline-none">
+                    <input type="text" placeholder="Зарплата от, руб." class="w-full bg-slate-100 px-10 py-3 rounded-lg md:rounded-none md:py-0 outline-none">
                     <i class="fa-solid fa-ruble-sign absolute top-3.5 bottom-0 left-3.5 text-gray-500"></i>
                 </div>
-                <div class="group-4 max-w-[15%] w-full flex justify-between items-center">
-                    <div class="bg-stone-100 rounded-tr-lg rounded-br-lg">
-                        <button class="bg-sky-600 text-white rounded-lg py-2 px-8">Найти</button>
+                <div class="group-4 md:max-w-[20%] w-full flex justify-between items-center">
+                    <div class="bg-stone-100 rounded-tr-lg rounded-br-lg flex w-full">
+                        <button class="bg-sky-600 text-white rounded-lg py-2 px-8 w-full">Найти</button>
                     </div>
-                    <a href="#" class="text-3xl text-sky-600 ml-4"><i class="fa-solid fa-sliders"></i></a>
+                    <a href="#" class="text-3xl text-sky-600 ml-2 md:ml-4"><i class="fa-solid fa-sliders"></i></a>
                 </div>
             </div>
-            <div class="header-recomendations py-6 flex">
-                <span class="min-w-fit flex items-center font-medium">Рекомендуем вам:</span>
-                <div class="pl-4 w-full">
+            <div class="header-recomendations py-4 md:py-6 flex flex-col sm:flex-row flex-shrink gap-2 flex-auto">
+                <span class="min-w-fit flex items-center justify-center sm:justify-start font-medium">Рекомендуем вам:</span>
+                <div class="pl-4 w-full overflow-x-hidden">
                     <ul class="flex gap-4 overflow-x-hidden">
                         <li class="min-w-fit px-3 py-1 border-2 border-sky-600 rounded-lg font-medium">Вакансии в Новокузнецке</li>
                         <li class="min-w-fit px-3 py-1 border-2 border-slate-300 rounded-lg font-medium">Популярные запросы</li>
@@ -46,33 +46,59 @@
         </div>
     </div>
 
-    <div class="work-body bg-sky-100">
+    <div class="work-body bg-sky-100 px-2">
         <div class="container mx-auto max-w-[1280px]">
 
             <div class="work-body-content flex gap-12 py-4 px-4">
 
-                <div class="w-3/4 flex flex-col gap-y-4">
+                <div class="w-full lg:w-3/4 flex flex-col gap-y-4">
 
                     <div class="job-card bg-white rounded-lg p-4">
                         <div class="top-card flex justify-between">
                             <div>
-                                <h1 class="font-medium text-lg">Специалист на обработку почты</h1>
+                                <h1 class="font-medium text-xl">Специалист на обработку почты</h1>
                                 <span>30 000 руб.</span>
                             </div>
                             <a href="#" class="text-lg"><i class="fa-regular fa-star"></i></a>
                         </div>
                         <div class="card-content">
                             <div class="py-2">
-                                <p class="line-clamp-2">TELESTANDARD – аутсорсинговый колл-центр, с опытом реализации проектов в различных сферах бизнеса. Оператором колл-центра у нас может работать любой человек, независимо от специальности и предыдущей профессии</p>
+                                <p class="line-clamp-3">TELESTANDARD – аутсорсинговый колл-центр, с опытом реализации проектов в различных сферах бизнеса. Оператором колл-центра у нас может работать любой человек, независимо от специальности и предыдущей профессии</p>
                             </div>
-                            <div class="py-1">
-                                <span class="py-1 px-3 bg-purple-200 rounded-3xl text-purple-800"><i class="fa-solid fa-crown mr-1.5"></i>Вакансия недели</span>
+                            <div class="py-1 flex gap-2 flex-wrap">
+                                <span class="py-1 px-3 bg-purple-200 rounded-3xl text-purple-800 min-w-fit"><i class="fa-solid fa-crown mr-1.5"></i>Вакансия недели</span>
                                 <span class="py-1 px-3 bg-slate-100 rounded-3xl"><i class="fa-solid fa-graduation-cap mr-1.5"></i>Для студентов</span>
                             </div>
                             <div class="company-name py-4">
                                 <h2 class="font-medium">Telestandard</h2>
                             </div>
-                            <div class="actions flex gap-2">
+                            <div class="actions flex gap-2 flex-col sm:flex-row">
+                                <button class="bg-sky-600 min-w-fit px-5 py-2.5 rounded-md text-white font-medium">Откликнуться</button>
+                                <button class="bg-slate-100 min-w-fit px-5 py-2.5 rounded-md text-black font-medium">Позвонить</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="job-card bg-white rounded-lg p-4">
+                        <div class="top-card flex justify-between">
+                            <div>
+                                <h1 class="font-medium text-xl">Специалист на обработку почты</h1>
+                                <span>30 000 руб.</span>
+                            </div>
+                            <a href="#" class="text-lg"><i class="fa-regular fa-star"></i></a>
+                        </div>
+                        <div class="card-content">
+                            <div class="py-2">
+                                <p class="line-clamp-3">TELESTANDARD – аутсорсинговый колл-центр, с опытом реализации проектов в различных сферах бизнеса. Оператором колл-центра у нас может работать любой человек, независимо от специальности и предыдущей профессии</p>
+                            </div>
+                            <div class="py-1 flex gap-2 flex-wrap">
+                                <span class="py-1 px-3 bg-purple-200 rounded-3xl text-purple-800 min-w-fit"><i class="fa-solid fa-crown mr-1.5"></i>Вакансия недели</span>
+                                <span class="py-1 px-3 bg-slate-100 rounded-3xl"><i class="fa-solid fa-graduation-cap mr-1.5"></i>Для студентов</span>
+                            </div>
+                            <div class="company-name py-4">
+                                <h2 class="font-medium">Telestandard</h2>
+                            </div>
+                            <div class="actions flex gap-2 flex-col sm:flex-row">
                                 <button class="bg-sky-600 min-w-fit px-5 py-2.5 rounded-md text-white font-medium">Откликнуться</button>
                                 <button class="bg-slate-100 min-w-fit px-5 py-2.5 rounded-md text-black font-medium">Позвонить</button>
                             </div>
@@ -85,46 +111,20 @@
                                 <h1 class="font-medium text-lg">Специалист на обработку почты</h1>
                                 <span>30 000 руб.</span>
                             </div>
-                            <a href="#" class="text-lg"><i class="fa-regular fa-star"></i></a>
+                            <a href="#" class="text-xl"><i class="fa-regular fa-star"></i></a>
                         </div>
                         <div class="card-content">
                             <div class="py-2">
-                                <p class="line-clamp-2">TELESTANDARD – аутсорсинговый колл-центр, с опытом реализации проектов в различных сферах бизнеса. Оператором колл-центра у нас может работать любой человек, независимо от специальности и предыдущей профессии</p>
+                                <p class="line-clamp-3">TELESTANDARD – аутсорсинговый колл-центр, с опытом реализации проектов в различных сферах бизнеса. Оператором колл-центра у нас может работать любой человек, независимо от специальности и предыдущей профессии</p>
                             </div>
-                            <div class="py-1">
-                                <span class="py-1 px-3 bg-purple-200 rounded-3xl text-purple-800"><i class="fa-solid fa-crown mr-1.5"></i>Вакансия недели</span>
+                            <div class="py-1 flex gap-2 flex-wrap">
+                                <span class="py-1 px-3 bg-purple-200 rounded-3xl text-purple-800 min-w-fit"><i class="fa-solid fa-crown mr-1.5"></i>Вакансия недели</span>
                                 <span class="py-1 px-3 bg-slate-100 rounded-3xl"><i class="fa-solid fa-graduation-cap mr-1.5"></i>Для студентов</span>
                             </div>
                             <div class="company-name py-4">
                                 <h2 class="font-medium">Telestandard</h2>
                             </div>
-                            <div class="actions flex gap-2">
-                                <button class="bg-sky-600 min-w-fit px-5 py-2.5 rounded-md text-white font-medium">Откликнуться</button>
-                                <button class="bg-slate-100 min-w-fit px-5 py-2.5 rounded-md text-black font-medium">Позвонить</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="job-card bg-white rounded-lg p-4">
-                        <div class="top-card flex justify-between">
-                            <div>
-                                <h1 class="font-medium text-lg">Специалист на обработку почты</h1>
-                                <span>30 000 руб.</span>
-                            </div>
-                            <a href="#" class="text-lg"><i class="fa-regular fa-star"></i></a>
-                        </div>
-                        <div class="card-content">
-                            <div class="py-2">
-                                <p class="line-clamp-2">TELESTANDARD – аутсорсинговый колл-центр, с опытом реализации проектов в различных сферах бизнеса. Оператором колл-центра у нас может работать любой человек, независимо от специальности и предыдущей профессии</p>
-                            </div>
-                            <div class="py-1">
-                                <span class="py-1 px-3 bg-purple-200 rounded-3xl text-purple-800"><i class="fa-solid fa-crown mr-1.5"></i>Вакансия недели</span>
-                                <span class="py-1 px-3 bg-slate-100 rounded-3xl"><i class="fa-solid fa-graduation-cap mr-1.5"></i>Для студентов</span>
-                            </div>
-                            <div class="company-name py-4">
-                                <h2 class="font-medium">Telestandard</h2>
-                            </div>
-                            <div class="actions flex gap-2">
+                            <div class="actions flex gap-2 flex-col sm:flex-row">
                                 <button class="bg-sky-600 min-w-fit px-5 py-2.5 rounded-md text-white font-medium">Откликнуться</button>
                                 <button class="bg-slate-100 min-w-fit px-5 py-2.5 rounded-md text-black font-medium">Позвонить</button>
                             </div>
@@ -133,7 +133,7 @@
 
                 </div>
     
-                <div class="w-1/4 bg-white rounded-lg h-fit">
+                <div class="lg:w-1/4 bg-white rounded-lg h-fit hidden lg:block w-0">
                     <div class="py-4">
                         <h1 class="text-center font-medium">Вакансии дня</h1>
                     </div>

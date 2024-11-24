@@ -18,8 +18,8 @@
             <form method='POST'>
                 {% csrf_token %}
                 <div class="input-block flex flex-col gap-1 py-1.5">
-                    <label for="phoneNum">Номер телефона</label>
-                    <input id="phoneNum" name="phoneNum" type="text" class="border-2 border-gray-400 rounded-lg py-1 px-2 outline-sky-600/50" placeholder="+7(***)*** **-**" minlength="16" required>
+                    <label for="username">Имя пользователя</label>
+                    <input id="username" name="username" type="text" class="border-2 border-gray-400 rounded-lg py-1 px-2 outline-sky-600/50" placeholder="Имя пользователя" minlength="8" required>
                 </div>
                 <div class="input-block flex flex-col gap-1 py-1.5">
                     <label for="password">Пароль</label>

@@ -11,15 +11,15 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-sky-100">
-    <header class="fixed w-full border-b-2 bg-white z-50">
-        <nav class="container mx-auto max-w-[1280px] px-2 relative">
+    <header class="fixed w-full border-b-2 bg-sky-600 sm:bg-white z-50">
+        <nav class="container mx-auto max-w-[1280px] px-4 relative">
             <div class="nav-bar flex py-4 justify-between">
-                <div class="nav-menu flex items-center gap-4 font-medium">
+                <div class="nav-menu flex items-center gap-2 xl:gap-4 font-medium">
                     <div class="mob-menu xl:hidden">
-                        <span id="burgerToggle" class="text-3xl text-sky-900 cursor-pointer"><i class="fa-solid fa-bars"></i></span>
+                        <span id="burgerToggle" class="text-3xl text-white sm:text-sky-900 cursor-pointer"><i class="fa-solid fa-bars"></i></span>
                     </div>
                     <div class="logo flex mb-1.5">
-                        <a href="{% url 'index_view' %}" class="text-3xl text-sky-600 font-bold flex"><img src="{% static "img/logo3.png" %}" alt="brainhunter" width="32px" class="object-contain">BrainHunter</a>
+                        <a href="{% url 'index_view' %}" class="text-3xl mt-1 text-white sm:text-sky-600 font-bold flex"><img src="{% static "img/logo3.png" %}" alt="brainhunter" width="32px" class="object-contain hidden sm:block">BrainHunter</a>
                     </div>
                     <div class="hidden xl:flex gap-4">
                         <a href="#">Вакансии</a>
@@ -32,7 +32,11 @@
                 <div class="right-menu sm:flex items-center gap-4 font-medium hidden">
                     <a href="#"><i class="fa-solid fa-location-dot mr-1"></i>Новокузнецк</a>
                     <div class="hidden lg:flex items-center gap-4">
-                        <button class="bg-stone-200/80 rounded-lg px-2 py-1">Создать резюме</button>
+                        {% if user.is_authenticated %}
+                        <button class="bg-stone-200/80 rounded-lg px-2 py-1" onclick="window.location='/resume'">Мое резюме</button>
+                        {% else %}
+                        <button class="bg-stone-200/80 rounded-lg px-2 py-1" onclick="window.location='/resume'">Создать резюме</button>
+                        {% endif %}
                         <a href="{% url 'login_view' %}">Войти</a>
                     </div>
                 </div>
@@ -44,6 +48,13 @@
                     <a href="#">Компании</a>
                     <a href="#">Блог</a>
                     <a href="#">Работодателю</a>
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'resume_view' %}">Мое резюме</a>
+                    <a href="{% url 'account_view' %}">Аккаунт</a>
+                    {% else %}
+                    <a href="{% url 'resume_view' %}">Создать резюме</a>
+                    <a href="{% url 'login_view' %}">Войти</a>
+                    {% endif %}
                 </div>
             </div>
         </nav>

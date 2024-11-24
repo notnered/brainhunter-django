@@ -3,3 +3,25 @@
 {% load static %}
 
 {% block title %}Аккаунт - BrainHunter{% endblock title %}
+
+{% block main %}
+
+<div class="container max-w-[1280px] mx-auto px-4">
+    <div class="account-block bg-white my-4 px-6 py-8 rounded-lg">
+        <div class="max-w-[60em]">
+            <div class="contact-info border-b-[1px] my-1.5 pb-0.5">
+                <h1 class="text-3xl font-semibold my-1.5">Имя пользователя</h1>
+                <p class="text-lg my-1">21 год, родился 14 мая 2003</p>
+                <p class="text-lg my-1">Новокузнецк</p>
+            </div>
+            <div class="about-info">
+                <h1 class="text-2xl">Обо мне</h1>
+                <p>Работал в команде Byster Frontend-разработчиком. Занимался разработкой сайта, а в дальнейшем и приложения (SPA) на React. Навыки, которые я получил при работе над проектом https://byster.one: Enterprise Development, Тайм-менеджмент.
+                    Сейчас работаю Fullstack Developer в АО "ЕВРАЗ Холдинг". Занимаюсь разработкой приложений (в основном SPA) на React или Vue и REST API для фронтенда на Flask. Навыки, которые я получил при работе над проектами в этой компании: Agile Project Management, Scrum, Time-Management, Backend Development, DevOps (немножко), Azure DevOps.
+                    Более подробно мои ключевые навыки расписаны в соотвтествующем разделе этого резюме.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock main %}
