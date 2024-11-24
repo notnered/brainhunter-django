@@ -14,6 +14,30 @@ def index_view(request):
     return render(request, 'index.html', {'vacancy': vacancy})
 
 
+def vacancy_search_view(request):
+    if request.GET.get('searched'):
+        searched = request.GET.get('searched').lower()
+        searched_city = request.GET['city'].lower()
+        searched_salary = request.GET['salary']
+        try:
+            searched_salary = float(searched_salary)
+        except ValueError:
+            searched_salary = 0
+        vacancy_search = Vacancy.objects.filter(title__icontains=searched, location__icontains=searched_city, salary__gte=searched_salary)
+        return render(request, 'job-search.html', {
+            'vacancy_search': vacancy_search,
+            'searched': searched,
+            'searched_city': searched_city,
+            'searched_salary': searched_salary,
+            })
+    else:
+        vacancy_search = Vacancy.objects.all()
+        return render(request, 'job-search.html', {
+            'vacancy_search': vacancy_search,
+            })
+
+
+
 def login_view(request):
     if request.user.is_authenticated:
         return redirect('account_view')

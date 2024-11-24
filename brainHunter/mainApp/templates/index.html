@@ -26,7 +26,7 @@
                 </div>
                 <div class="group-4 md:max-w-[20%] w-full flex justify-between items-center">
                     <div class="bg-stone-100 rounded-tr-lg rounded-br-lg flex w-full">
-                        <button class="bg-sky-600 text-white rounded-lg py-2 px-8 w-full">Найти</button>
+                        <button class="bg-sky-600 text-white rounded-lg py-2 px-8 w-full" onclick="window.location='vacancy'">Найти</button>
                     </div>
                     <a href="#" class="text-3xl text-sky-600 ml-2 md:ml-4"><i class="fa-solid fa-sliders"></i></a>
                 </div>
@@ -60,8 +60,9 @@
                         <div class="job-card bg-white rounded-lg p-4">
                             <div class="top-card flex justify-between">
                                 <div>
-                                    <h1 class="font-medium text-xl">{{ vacancy.title }}</h1>
+                                    <h1 class="font-medium text-xl capitalize">{{ vacancy.title }}</h1>
                                     <span>{{ vacancy.salary|intcomma }} руб.</span>
+                                    <span class="capitalize">{{ vacancy.location }}</span>
                                 </div>
                                 <a href="#" class="text-lg"><i class="fa-regular fa-star"></i></a>
                             </div>
