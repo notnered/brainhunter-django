@@ -68,6 +68,14 @@
 
                 {% if vacancy_search %}
 
+                {% if searched %}
+
+                <div class="cant-find-block bg-white p-4 rounded-lg flex flex-col items-center justify-center">
+                    <h1 class="text-2xl font-medium">Все вакансии по запросу {{ searched }}</h1>
+                </div>
+
+                {% endif %}
+
                     {% for vacancy in vacancy_search|slice:':10' %}
                     
                         <div class="job-card bg-white rounded-lg p-4" data-id={{ vacancy.id }}>

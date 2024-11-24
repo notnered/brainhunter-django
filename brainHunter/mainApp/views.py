@@ -15,7 +15,7 @@ def index_view(request):
 
 
 def vacancy_search_view(request):
-    if request.GET.get('searched'):
+    if request.GET.get('searched') or request.GET.get('city') or request.GET.get('salary'):
         searched = request.GET.get('searched').lower()
         searched_city = request.GET['city'].lower()
         searched_salary = request.GET['salary']
@@ -24,6 +24,7 @@ def vacancy_search_view(request):
         except:
             searched_salary = 0
         vacancy_search = Vacancy.objects.filter(title__icontains=searched, location__icontains=searched_city, salary__gte=searched_salary).order_by('-posted_at')
+        print('post', searched, searched_city, searched_salary)
         return render(request, 'job-search.html', {
             'vacancy_search': vacancy_search,
             'searched': searched.capitalize(),
