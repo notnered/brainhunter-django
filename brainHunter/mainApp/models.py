@@ -32,6 +32,17 @@ class Vacancy(models.Model):
         return self.title
 
 
+class Company(models.Model):
+    company_id = models.IntegerField()
+    name = models.CharField(max_length=255)
+    location = models.CharField(max_length=255)
+    company_manager = models.CharField(max_length=255)
+    manager_email = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+
 class Application(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="applications")
     vacancy = models.ForeignKey(Vacancy, on_delete=models.CASCADE, related_name="applications")

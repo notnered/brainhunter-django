@@ -23,7 +23,7 @@
                     <i class="fa-solid fa-location-dot absolute top-3.5 bottom-0 left-3.5 text-gray-500"></i>
                 </div>
                 <div class="group-3 w-full flex relative">
-                    <input type="text" name='salary' placeholder="Зарплата от, руб." value="{% if searched_salary > 0 %}{{ searched_salary }}{% endif %}" class="w-full bg-slate-100 px-10 py-3 rounded-lg md:rounded-none md:py-0 outline-none">
+                    <input type="text" name='salary' placeholder="Зарплата от, руб." value="{% if searched_salary > 0 %}{{ searched_salary|stringformat:".1f" }}{% endif %}" class="w-full bg-slate-100 px-10 py-3 rounded-lg md:rounded-none md:py-0 outline-none">
                     <i class="fa-solid fa-ruble-sign absolute top-3.5 bottom-0 left-3.5 text-gray-500"></i>
                 </div>
                 <div class="group-4 md:max-w-[20%] w-full flex justify-between items-center">

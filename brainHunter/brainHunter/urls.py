@@ -30,6 +30,7 @@ urlpatterns = [
     path('resume/', views.resume_view, name='resume_view'),
     path('vacancy/', views.vacancy_search_view, name='vacancy_search'),
     path('create-vacancy/', views.create_vacancy_view, name='creating_vacancy'),
+    path('all-vacancy/', views.all_vacancy_view, name='all_vacancy'),
 ]
 
 if settings.DEBUG:

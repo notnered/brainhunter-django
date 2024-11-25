@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% load humanize %}
+
+{% block title %}Создание вакансии - BrainHunter{% endblock title %}
+
+{% block main %}
+
+    <div class="container max-w-[1280px] mx-auto py-4">
+        <div class="bg-white">
+            <div class="flex">
+                <aside class="w-1/4 bg-slate-50 p-4">
+                    <div class="logoBranding pb-2">
+                        <a href="{% url 'all_vacancy' %}" class="text-2xl text-sky-900 font-semibold flex">ООО "БАЗА РТ"</a>
+                    </div>
+                    <div class="menuAside pb-4">
+                        <ul class="flex flex-col gap-1.5">
+                            <li><a href="{% url 'all_vacancy' %}" class="text-gray-600 font-medium text-lg"><i class="fa-solid fa-suitcase w-8"></i>Мои вакансии</a></li>
+                            <li><a href="#" class="text-gray-600 font-medium text-lg"><i class="fa-solid fa-comments w-8"></i>Отклики</a></li>
+                            <li><a href="#" class="text-gray-600 font-medium text-lg"><i class="fa-solid fa-magnifying-glass w-8"></i>Поиск резюме</a></li>
+                            <li><a href="#" class="text-gray-600 font-medium text-lg"><i class="fa-solid fa-chart-simple w-8"></i>Статистика</a></li>
+                        </ul>
+                    </div>
+                    <div class="managerAside border-t-[1px] border-gray-300 py-4">
+                        <div class="ManagerInfo flex flex-col">
+                            <span>Ваш менеджер:</span>
+                            <span class="text-sky-950 font-semibold">Марочкин Евгений</span>
+                            <span class="text-sky-600 font-medium"><a href="mailto:e.marochkin@bh.ru">e.marochkin@bh.ru</a></span>
+                        </div>
+                    </div>
+                    <div class="companyID py-2">
+                        <span>ID компании: 3651580</span>
+                    </div>
+                </aside>
+                <section class="w-3/4 bg-white p-4">
+                    <div class="allVacancy max-w-[50em]">
+                        <div class="vacancyHeader pb-4">
+                            <h1 class="text-2xl font-semibold pt-2 pb-4">Все вакансии</h1>
+                            <p class="text-gray-600">Здесь указаны все вакансии, опубликованные от вашей компании</p>
+                        </div>
+                        <div class="vacancyAdd pb-2">
+                            <a href="{% url 'creating_vacancy' %}" class="py-1.5 px-3 bg-sky-600 text-white rounded-lg">Добавить вакансию</a>
+                        </div>
+                        <div class="vacancyContent">
+
+                            <div class="job-card bg-white rounded-lg py-4" data-id={{ vacancy.id }}>
+                                <div class="top-card flex justify-between">
+                                    <div>
+                                        <h1 class="font-medium text-xl capitalize">full-stack drupal-разработчик</h1>
+                                        <span>150 000,00 руб.</span>
+                                        <span class="capitalize">нижний новгород</span>
+                                    </div>
+                                    <a href="#" class="text-lg"><i class="fa-regular fa-star"></i></a>
+                                </div>
+                                <div class="card-content">
+                                    <div class="py-2">
+                                        <p class="line-clamp-4">Вакансия компании: ООО "ЦИФРОВЫЕ РЕШЕНИЯ" ООО "Цифровые решения", г. Нижний Новгород Являемся аккредитованной IT-компанией. ИНН: 5260465945 Наша команда занимаемся разработкой и поддержкой крупных высоко-нагруженных российских и зарубежных проектов. Разработана собственная no-code платформа (входит в реестр российского ПО) Ищем Full-stack PHP-разработчика на CMS: Drupal 10 Заработная плата: 80-150 тыс. на руки. Годовые бонусы по результатам работы. Возможность карьерного и профессионального роста до руководящей должности. Что предлагаем? Удаленная работа. При желании можно работать в офисе в Нижнем Новгороде; Гибкий график график; Небольшая дружная команда без сильной</p>
+                                    </div>
+                                    <div class="flex gap-2 flex-wrap">
+                                        <span class="py-1 px-3 bg-purple-200 rounded-3xl text-purple-800 min-w-fit"><i class="fa-solid fa-crown mr-1.5"></i>Вакансия недели</span>
+                                    </div>
+                                    <div class="company-name py-2">
+                                        <h2 class="font-medium">JCat, сервис размещения объявлений</h2>
+                                    </div>
+                                    <div class="actions flex gap-2 flex-col sm:flex-row">
+                                        <button class="bg-sky-600 min-w-fit px-5 py-2.5 rounded-md text-white font-medium">Редактировать</button>
+                                        <button class="bg-slate-100 min-w-fit px-5 py-2.5 rounded-md text-black font-medium">Закрыть</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="job-card bg-white rounded-lg py-4" data-id={{ vacancy.id }}>
+                                <div class="top-card flex justify-between">
+                                    <div>
+                                        <h1 class="font-medium text-xl capitalize">full-stack drupal-разработчик</h1>
+                                        <span>150 000,00 руб.</span>
+                                        <span class="capitalize">нижний новгород</span>
+                                    </div>
+                                    <a href="#" class="text-lg"><i class="fa-regular fa-star"></i></a>
+                                </div>
+                                <div class="card-content">
+                                    <div class="py-2">
+                                        <p class="line-clamp-4">Вакансия компании: ООО "ЦИФРОВЫЕ РЕШЕНИЯ" ООО "Цифровые решения", г. Нижний Новгород Являемся аккредитованной IT-компанией. ИНН: 5260465945 Наша команда занимаемся разработкой и поддержкой крупных высоко-нагруженных российских и зарубежных проектов. Разработана собственная no-code платформа (входит в реестр российского ПО) Ищем Full-stack PHP-разработчика на CMS: Drupal 10 Заработная плата: 80-150 тыс. на руки. Годовые бонусы по результатам работы. Возможность карьерного и профессионального роста до руководящей должности. Что предлагаем? Удаленная работа. При желании можно работать в офисе в Нижнем Новгороде; Гибкий график график; Небольшая дружная команда без сильной</p>
+                                    </div>
+                                    <div class="flex gap-2 flex-wrap">
+                                        <span class="py-1 px-3 bg-purple-200 rounded-3xl text-purple-800 min-w-fit"><i class="fa-solid fa-crown mr-1.5"></i>Вакансия недели</span>
+                                    </div>
+                                    <div class="company-name py-2">
+                                        <h2 class="font-medium">JCat, сервис размещения объявлений</h2>
+                                    </div>
+                                    <div class="actions flex gap-2 flex-col sm:flex-row">
+                                        <button class="bg-sky-600 min-w-fit px-5 py-2.5 rounded-md text-white font-medium">Редактировать</button>
+                                        <button class="bg-slate-100 min-w-fit px-5 py-2.5 rounded-md text-black font-medium">Закрыть</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+{% endblock main%}

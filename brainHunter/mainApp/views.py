@@ -91,6 +91,12 @@ def create_vacancy_view(request):
     return render(request, 'creating-vacancy.html')
 
 
+def all_vacancy_view(request):
+    
+
+    return render(request, 'all-vacancy.html')
+
+
 def resume_view(request):
 
     return render(request, 'resume.html')
