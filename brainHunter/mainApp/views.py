@@ -85,14 +85,19 @@ def reg_view(request):
 
 
 def create_vacancy_view(request):
+    if not request.user.is_staff:
+        return HttpResponse('У вас недостаточно прав')
+    
     if request.method == 'POST':
         pass
 
     return render(request, 'creating-vacancy.html')
 
 
+
 def all_vacancy_view(request):
-    
+    if not request.user.is_staff:
+        return HttpResponse('У вас недостаточно прав')
 
     return render(request, 'all-vacancy.html')
 
@@ -100,6 +105,11 @@ def all_vacancy_view(request):
 def resume_view(request):
 
     return render(request, 'resume.html')
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('index_view')
 
 
 @login_required

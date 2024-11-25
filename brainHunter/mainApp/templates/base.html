@@ -23,9 +23,9 @@
                         <a href="{% url 'index_view' %}" class="text-3xl mt-1 text-white sm:text-sky-600 font-bold flex"><img src="{% static "img/logo3.png" %}" alt="brainhunter" width="32px" class="object-contain hidden sm:block">BrainHunter</a>
                     </div>
                     <div class="hidden xl:flex gap-4">
-                        <a href="{% url 'vacancy_search' %}">Вакансии</a>
+                        <a href="{% url 'vacancy_search' %}">Поиск вакансий</a>
                         {% comment %} <a href="#">Профессии</a> {% endcomment %}
-                        <a href="{% url 'all_vacancy' %}">Компании</a>
+                        <a href="#">Компании</a>
                         <a href="#">Блог</a>
                         <a href="#">Работодателю</a>
                     </div>
@@ -34,8 +34,13 @@
                     <a href="#"><i class="fa-solid fa-location-dot mr-1"></i>Новокузнецк</a>
                     <div class="hidden lg:flex items-center gap-4">
                         {% if user.is_authenticated %}
+                        {% if user.is_staff%}
+                        <button class="bg-stone-200/80 rounded-lg px-2 py-1" onclick="window.location='/create-vacancy/'">Добавить вакансию</button>
+                        <a href="{% url 'all_vacancy' %}">Моя компания</a>
+                        {% else %}
                         <button class="bg-stone-200/80 rounded-lg px-2 py-1" onclick="window.location='/resume'">Мое резюме</button>
                         <a href="{% url 'login_view' %}">Мой профиль</a>
+                        {% endif %}
                         {% else %}
                         <button class="bg-stone-200/80 rounded-lg px-2 py-1" onclick="window.location='/resume'">Создать резюме</button>
                         <a href="{% url 'login_view' %}">Войти</a>
