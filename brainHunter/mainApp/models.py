@@ -8,10 +8,17 @@ class Skill(models.Model):
     def __str__(self):
         return self.name
 
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
-    phone_number = models.CharField(max_length=15, blank=True, null=True)
-    resume = models.FileField(upload_to="resumes/", blank=True, null=True)
+    phone_number = models.CharField(max_length=16, blank=True, null=True)
+    birth_date = models.DateField(blank=True, null=True)
+    gender = models.CharField(max_length=255, choices=[
+        ("male", "Male"),
+        ("female", "Female"),
+        ("not set", "Not Set"),
+    ], default='not set')
+    location = models.CharField(max_length=255)
     bio = models.TextField(blank=True, null=True)
     skills = models.ManyToManyField(Skill, related_name="profiles", blank=True)
 
@@ -33,6 +40,7 @@ class Vacancy(models.Model):
 
 
 class Company(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='account', null=True)
     company_id = models.IntegerField()
     name = models.CharField(max_length=255)
     location = models.CharField(max_length=255)

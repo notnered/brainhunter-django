@@ -50,14 +50,19 @@
             </div>
             <div class="burger-menu absolute left-0 w-full hidden sm:max-w-[12em]" id="burgerMenu">
                 <div class="flex flex-col gap-1 p-2 bg-sky-600 text-white font-medium w-full">
-                    <a href="#">Вакансии</a>
-                    <a href="#">Профессии</a>
+                    <a href="{% url 'vacancy_search' %}">Вакансии</a>
+                    {% comment %} <a href="#">Профессии</a> {% endcomment %}
                     <a href="#">Компании</a>
                     <a href="#">Блог</a>
                     <a href="#">Работодателю</a>
                     {% if user.is_authenticated %}
+                    {% if user.is_staff %}
+                    <a href="{% url 'creating_vacancy' %}">Добавить вакансию</a>
+                    <a href="{% url 'all_vacancy' %}">Моя компания</a>
+                    {% else %}
                     <a href="{% url 'resume_view' %}">Мое резюме</a>
                     <a href="{% url 'account_view' %}">Мой профиль</a>
+                    {% endif %}
                     {% else %}
                     <a href="{% url 'resume_view' %}">Создать резюме</a>
                     <a href="{% url 'login_view' %}">Войти</a>

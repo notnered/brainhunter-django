@@ -38,34 +38,37 @@
                             <h1 class="text-2xl font-semibold pt-2 pb-4">Создание вакансии</h1>
                             <p class="text-gray-600">Укажите популярное название, чтобы соискателям было проще найти вакансию. После размещения вы уже не сможете изменить название, поэтому обязательно прочитайте <a class="text-sky-600" href="#">правила заполнения вакансии</a></p>
                         </div>
-                        <div class="inputGroup border-b-[1px] pb-6">
-                            <div class="createrInput flex gap-4 items-center py-2">
-                                <label for="vacancyTitle" class="min-w-[30%]">Название вакансии<span class="text-sky-600 ml-0.5">*</span></label>
-                                <input id="vacancyTitle" name="vacancyTitle" class="py-1 px-2 border-2 w-full focus:border-gray-500 outline-none rounded-md" type="text" placeholder="Введите название" required>
+                        <form action="{% url 'creating_vacancy' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="inputGroup border-b-[1px] pb-6">
+                                <div class="createrInput flex gap-4 items-center py-2">
+                                    <label for="vacancyTitle" class="min-w-[30%]">Название вакансии<span class="text-sky-600 ml-0.5">*</span></label>
+                                    <input id="vacancyTitle" name="vacancyTitle" class="py-1 px-2 border-2 w-full focus:border-gray-500 outline-none rounded-md" type="text" placeholder="Введите название" required>
+                                </div>
+                                <div class="createrInput flex gap-4 items-center py-2">
+                                    <label for="vacancySalary" class="min-w-[30%]">Зарплата</label>
+                                    <input id="vacancySalary" name="vacancySalary" class="py-1 px-2 border-2 w-full focus:border-gray-500 outline-none rounded-md" type="text" placeholder="Введите уровень заработной платы">
+                                    <span class="min-w-fit">руб./мес.</span>
+                                </div>
                             </div>
-                            <div class="createrInput flex gap-4 items-center py-2">
-                                <label for="vacancySalary" class="min-w-[30%]">Зарплата</label>
-                                <input id="vacancySalary" name="vacancySalary" class="py-1 px-2 border-2 w-full focus:border-gray-500 outline-none rounded-md" type="text" placeholder="Введите уровень заработной платы">
-                                <span class="min-w-fit">руб./мес.</span>
+                            <div class="inputGroup">
+                                <div class="createrHeader py-4">
+                                    <h1 class="text-xl font-semibold pt-1 pb-1">Описание и требования</h1>
+                                    <p class="text-gray-600">Соискатели лучше откликаются на вакансии с понятным и подробным описанием. Почитайте, <span class="text-sky-600">как написать вакансию, на которую откликнутся.</span></p>
+                                </div>
+                                <div class="createrInput flex gap-4 items-center py-2">
+                                    <label for="vacancyLocation" class="min-w-[30%]">Место работы<span class="text-sky-600 ml-0.5">*</span></label>
+                                    <input id="vacancyLocation" name="vacancyLocation" class="py-1 px-2 border-2 w-full focus:border-gray-500 outline-none rounded-md" type="text" placeholder="Напишите место работы" required>
+                                </div>
+                                <div class="createrInput flex flex-col gap-2 py-2">
+                                    <label for="vacancyDesc" class="min-w-[30%]">Описание<span class="text-sky-600 ml-0.5">*</span></label>
+                                    <textarea id="vacancyDesc" name="vacancyDesc" class="py-1 px-2 border-2 w-full focus:border-gray-500 outline-none rounded-md min-h-20 max-h-96" rows="10" type="text" placeholder="Опишите требования, обязанности и условия" required></textarea>
+                                </div>
+                                <div class="createrInput flex gap-4 items-center py-2">
+                                    <button id="vacancySubmit" name="vacancySubmit" class="py-1.5 px-2 w-full bg-sky-600 text-white outline-none rounded-md" type="submit">Создать вакансию</button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="inputGroup">
-                            <div class="createrHeader py-4">
-                                <h1 class="text-xl font-semibold pt-1 pb-1">Описание и требования</h1>
-                                <p class="text-gray-600">Соискатели лучше откликаются на вакансии с понятным и подробным описанием. Почитайте, <span class="text-sky-600">как написать вакансию, на которую откликнутся.</span></p>
-                            </div>
-                            <div class="createrInput flex gap-4 items-center py-2">
-                                <label for="vacancyLocation" class="min-w-[30%]">Место работы<span class="text-sky-600 ml-0.5">*</span></label>
-                                <input id="vacancyLocation" name="vacancyLocation" class="py-1 px-2 border-2 w-full focus:border-gray-500 outline-none rounded-md" type="text" placeholder="Напишите место работы" required>
-                            </div>
-                            <div class="createrInput flex flex-col gap-2 py-2">
-                                <label for="vacancyDesc" class="min-w-[30%]">Описание<span class="text-sky-600 ml-0.5">*</span></label>
-                                <textarea id="vacancyDesc" name="vacancyDesc" class="py-1 px-2 border-2 w-full focus:border-gray-500 outline-none rounded-md min-h-20 max-h-96" rows="10" type="text" placeholder="Опишите требования, обязанности и условия" required></textarea>
-                            </div>
-                            <div class="createrInput flex gap-4 items-center py-2">
-                                <button id="vacancySubmit" name="vacancySubmit" class="py-1.5 px-2 w-full bg-sky-600 text-white outline-none rounded-md" type="submit">Создать вакансию</button>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </section>
             </div>

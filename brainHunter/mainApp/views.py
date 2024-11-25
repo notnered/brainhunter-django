@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.hashers import make_password
-from .models import Vacancy
+from .models import Vacancy, Company
 
 # Create your views here.
 
@@ -88,7 +88,18 @@ def create_vacancy_view(request):
     if not request.user.is_staff:
         return HttpResponse('У вас недостаточно прав')
     
+    # try:
+    #     company = Company.objects.get(user=request.user)
+    # except:
+    #     return HttpResponse('Вас еще не добавили в панель управления компанией')
+    
     if request.method == 'POST':
+        vacancyTitle = request.POST['vacancyTitle']
+        vacancySalary = request.POST['vacancySalary']
+        vacancyLocation = request.POST['vacancyLocation']
+        vacancyDesc = request.POST['vacancyDesc']
+        company = Company.objects.get(user=request.user)
+        
         pass
 
     return render(request, 'creating-vacancy.html')
@@ -98,6 +109,11 @@ def create_vacancy_view(request):
 def all_vacancy_view(request):
     if not request.user.is_staff:
         return HttpResponse('У вас недостаточно прав')
+    
+    # try:
+    #     company = Company.objects.get(user=request.user)
+    # except:
+    #     return HttpResponse('Вас еще не добавили в панель управления компанией')
 
     return render(request, 'all-vacancy.html')
 
