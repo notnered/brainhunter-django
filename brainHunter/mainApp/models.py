@@ -11,6 +11,7 @@ class Skill(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
+    full_name = models.CharField(max_length=255, default='John Doe')
     phone_number = models.CharField(max_length=16, blank=True, null=True)
     birth_date = models.DateField(blank=True, null=True)
     gender = models.CharField(max_length=255, choices=[

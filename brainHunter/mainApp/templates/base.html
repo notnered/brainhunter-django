@@ -38,7 +38,7 @@
                         <button class="bg-stone-200/80 rounded-lg px-2 py-1" onclick="window.location='/create-vacancy/'">Добавить вакансию</button>
                         <a href="{% url 'all_vacancy' %}">Моя компания</a>
                         {% else %}
-                        <button class="bg-stone-200/80 rounded-lg px-2 py-1" onclick="window.location='/resume'">Мое резюме</button>
+                        <button class="bg-stone-200/80 rounded-lg px-2 py-1" onclick="window.location='/resume/{{ user.id }}'">Мое резюме</button>
                         <a href="{% url 'login_view' %}">Мой профиль</a>
                         {% endif %}
                         {% else %}
@@ -60,11 +60,11 @@
                     <a href="{% url 'creating_vacancy' %}">Добавить вакансию</a>
                     <a href="{% url 'all_vacancy' %}">Моя компания</a>
                     {% else %}
-                    <a href="{% url 'resume_view' %}">Мое резюме</a>
+                    <a href="{% url 'resume_view' user.id %}">Мое резюме</a>
                     <a href="{% url 'account_view' %}">Мой профиль</a>
                     {% endif %}
                     {% else %}
-                    <a href="{% url 'resume_view' %}">Создать резюме</a>
+                    <a href="#">Создать резюме</a>
                     <a href="{% url 'login_view' %}">Войти</a>
                     {% endif %}
                 </div>

@@ -3,13 +3,13 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.hashers import make_password
-from .models import Vacancy, Company
+from .models import Vacancy, Company, Profile
 
 # Create your views here.
 
 
 def index_view(request):
-    vacancy = Vacancy.objects.all().order_by('-posted_at')[:10]
+    vacancy = Vacancy.objects.filter(is_active=True).order_by('-posted_at')[:10]
 
     return render(request, 'index.html', {'vacancy': vacancy})
 
@@ -23,7 +23,7 @@ def vacancy_search_view(request):
             searched_salary = float(searched_salary)
         except:
             searched_salary = 0
-        vacancy_search = Vacancy.objects.filter(title__icontains=searched, location__icontains=searched_city, salary__gte=searched_salary).order_by('-posted_at')
+        vacancy_search = Vacancy.objects.filter(is_active=True, title__icontains=searched, location__icontains=searched_city, salary__gte=searched_salary).order_by('-posted_at')
         print('post', searched, searched_city, searched_salary)
         return render(request, 'job-search.html', {
             'vacancy_search': vacancy_search,
@@ -88,10 +88,6 @@ def create_vacancy_view(request):
     if not request.user.is_staff:
         return HttpResponse('У вас недостаточно прав')
     
-    # try:
-    #     company = Company.objects.get(user=request.user)
-    # except:
-    #     return HttpResponse('Вас еще не добавили в панель управления компанией')
     
     if request.method == 'POST':
         vacancyTitle = request.POST['vacancyTitle']
@@ -99,28 +95,39 @@ def create_vacancy_view(request):
         vacancyLocation = request.POST['vacancyLocation']
         vacancyDesc = request.POST['vacancyDesc']
         company = Company.objects.get(user=request.user)
-        
-        pass
+        Vacancy.objects.create(
+            title = vacancyTitle,
+            description = vacancyDesc,
+            company = company,
+            location = vacancyLocation,
+            salary = vacancySalary,
+        )
 
     return render(request, 'creating-vacancy.html')
 
+
+def edit_vacancy(request, id):
+    pass
+
+
+def delete_vacancy(request, id):
+    pass
 
 
 def all_vacancy_view(request):
     if not request.user.is_staff:
         return HttpResponse('У вас недостаточно прав')
     
-    # try:
-    #     company = Company.objects.get(user=request.user)
-    # except:
-    #     return HttpResponse('Вас еще не добавили в панель управления компанией')
+    company = Company.objects.get(user=request.user)
+    
 
-    return render(request, 'all-vacancy.html')
+    return render(request, 'all-vacancy.html', {'company': company})
 
 
-def resume_view(request):
+def resume_view(request, id):
+    profile = Profile.objects.get(user_id=id)
 
-    return render(request, 'resume.html')
+    return render(request, 'resume.html', {'profile': profile})
 
 
 def logout_view(request):
@@ -130,6 +137,11 @@ def logout_view(request):
 
 @login_required
 def account_view(request):
-    
+    user = request.user
+    try:
+        userProfile = Profile.objects.get(user=user)
+    except:
+        return redirect('all_vacancy')
 
-    return render(request, 'acc.html')
+    return render(request, 'acc.html', {'userProfile': userProfile})
+
