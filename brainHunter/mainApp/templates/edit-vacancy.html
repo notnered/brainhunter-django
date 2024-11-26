@@ -2,7 +2,9 @@
 
 {% load static %}
 
-{% block title %}Создание вакансии - BrainHunter{% endblock title %}
+{% load humanize %}
+
+{% block title %}Редактирование вакансии - BrainHunter{% endblock title %}
 
 {% block main %}
 
@@ -36,19 +38,19 @@
                 <section class="w-3/4 bg-white p-4">
                     <div class="vacancyCreater max-w-[50em]">
                         <div class="createrHeader pb-4">
-                            <h1 class="text-2xl font-semibold pt-2 pb-4">Создание вакансии</h1>
+                            <h1 class="text-2xl font-semibold pt-2 pb-4">Редактирование вакансии</h1>
                             <p class="text-gray-600">Укажите популярное название, чтобы соискателям было проще найти вакансию. После размещения вы уже не сможете изменить название, поэтому обязательно прочитайте <a class="text-sky-600" href="#">правила заполнения вакансии</a></p>
                         </div>
-                        <form action="{% url 'creating_vacancy' %}" method="POST">
+                        <form action="{% url 'edit_vacancy' vacancyObj.id %}" method="POST">
                             {% csrf_token %}
                             <div class="inputGroup border-b-[1px] pb-6">
                                 <div class="createrInput flex gap-4 items-center py-2">
                                     <label for="vacancyTitle" class="min-w-[30%]">Название вакансии<span class="text-sky-600 ml-0.5">*</span></label>
-                                    <input id="vacancyTitle" name="vacancyTitle" class="py-1 px-2 border-2 w-full focus:border-gray-500 outline-none rounded-md" type="text" placeholder="Введите название" required>
+                                    <input id="vacancyTitle" value="{{ vacancyObj.title }}" name="vacancyTitle" class="py-1 px-2 border-2 w-full focus:border-gray-500 outline-none rounded-md" type="text" placeholder="Введите название" required>
                                 </div>
                                 <div class="createrInput flex gap-4 items-center py-2">
                                     <label for="vacancySalary" class="min-w-[30%]">Зарплата</label>
-                                    <input id="vacancySalary" name="vacancySalary" class="py-1 px-2 border-2 w-full focus:border-gray-500 outline-none rounded-md" type="text" placeholder="Введите уровень заработной платы">
+                                    <input id="vacancySalary" value="{{ vacancyObj.salary|stringformat:'.2f' }}" name="vacancySalary" class="py-1 px-2 border-2 w-full focus:border-gray-500 outline-none rounded-md" type="text" placeholder="Введите уровень заработной платы">
                                     <span class="min-w-fit">руб./мес.</span>
                                 </div>
                             </div>
@@ -59,14 +61,14 @@
                                 </div>
                                 <div class="createrInput flex gap-4 items-center py-2">
                                     <label for="vacancyLocation" class="min-w-[30%]">Место работы<span class="text-sky-600 ml-0.5">*</span></label>
-                                    <input id="vacancyLocation" name="vacancyLocation" class="py-1 px-2 border-2 w-full focus:border-gray-500 outline-none rounded-md" type="text" placeholder="Напишите место работы" required>
+                                    <input id="vacancyLocation" value="{{ vacancyObj.location }}" name="vacancyLocation" class="py-1 px-2 border-2 w-full focus:border-gray-500 outline-none rounded-md" type="text" placeholder="Напишите место работы" required>
                                 </div>
                                 <div class="createrInput flex flex-col gap-2 py-2">
                                     <label for="vacancyDesc" class="min-w-[30%]">Описание<span class="text-sky-600 ml-0.5">*</span></label>
-                                    <textarea id="vacancyDesc" name="vacancyDesc" class="py-1 px-2 border-2 w-full focus:border-gray-500 outline-none rounded-md min-h-20 max-h-96" rows="10" type="text" placeholder="Опишите требования, обязанности и условия" required></textarea>
+                                    <textarea id="vacancyDesc" name="vacancyDesc" class="py-1 px-2 border-2 w-full focus:border-gray-500 outline-none rounded-md min-h-20 max-h-96" rows="10" type="text" placeholder="Опишите требования, обязанности и условия" required>{{ vacancyObj.description }}</textarea>
                                 </div>
                                 <div class="createrInput flex gap-4 items-center py-2">
-                                    <button id="vacancySubmit" name="vacancySubmit" class="py-1.5 px-2 w-full bg-sky-600 text-white outline-none rounded-md" type="submit">Создать вакансию</button>
+                                    <button id="vacancySubmit" name="vacancySubmit" class="py-1.5 px-2 w-full bg-sky-600 text-white outline-none rounded-md" type="submit">Редактировать вакансию</button>
                                 </div>
                             </div>
                         </form>

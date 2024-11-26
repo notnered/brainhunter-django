@@ -13,7 +13,7 @@
             <div class="flex">
                 <aside class="w-1/4 bg-slate-50 p-4">
                     <div class="logoBranding pb-2">
-                        <a href="{% url 'all_vacancy' %}" class="text-2xl text-sky-900 font-semibold flex">ООО "БАЗА РТ"</a>
+                        <a href="{% url 'all_vacancy' %}" class="text-xl text-sky-900 font-semibold flex">{{ company.name }}</a>
                     </div>
                     <div class="menuAside pb-4">
                         <ul class="flex flex-col gap-1.5">
@@ -27,12 +27,12 @@
                     <div class="managerAside border-t-[1px] border-gray-300 py-4">
                         <div class="ManagerInfo flex flex-col">
                             <span>Ваш менеджер:</span>
-                            <span class="text-sky-950 font-semibold">Марочкин Евгений</span>
-                            <span class="text-sky-600 font-medium"><a href="mailto:e.marochkin@bh.ru">e.marochkin@bh.ru</a></span>
+                            <span class="text-sky-950 font-semibold">{{ company.company_manager }}</span>
+                            <span class="text-sky-600 font-medium"><a href="mailto:{{ company.manager_email }}">{{ company.manager_email}}</a></span>
                         </div>
                     </div>
                     <div class="companyID py-2">
-                        <span>ID компании: 3651580</span>
+                        <span>ID компании: {{ company.company_id }}</span>
                     </div>
                 </aside>
                 <section class="w-3/4 bg-white p-4">
@@ -46,57 +46,31 @@
                         </div>
                         <div class="vacancyContent">
 
-                            <div class="job-card bg-white rounded-lg py-4" data-id={{ vacancy.id }}>
-                                <div class="top-card flex justify-between">
-                                    <div>
-                                        <h1 class="font-medium text-xl capitalize">full-stack drupal-разработчик</h1>
-                                        <span>150 000,00 руб.</span>
-                                        <span class="capitalize">нижний новгород</span>
-                                    </div>
-                                    <a href="#" class="text-lg"><i class="fa-regular fa-star"></i></a>
-                                </div>
-                                <div class="card-content">
-                                    <div class="py-2">
-                                        <p class="line-clamp-4">Вакансия компании: ООО "ЦИФРОВЫЕ РЕШЕНИЯ" ООО "Цифровые решения", г. Нижний Новгород Являемся аккредитованной IT-компанией. ИНН: 5260465945 Наша команда занимаемся разработкой и поддержкой крупных высоко-нагруженных российских и зарубежных проектов. Разработана собственная no-code платформа (входит в реестр российского ПО) Ищем Full-stack PHP-разработчика на CMS: Drupal 10 Заработная плата: 80-150 тыс. на руки. Годовые бонусы по результатам работы. Возможность карьерного и профессионального роста до руководящей должности. Что предлагаем? Удаленная работа. При желании можно работать в офисе в Нижнем Новгороде; Гибкий график график; Небольшая дружная команда без сильной</p>
-                                    </div>
-                                    <div class="flex gap-2 flex-wrap">
-                                        <span class="py-1 px-3 bg-purple-200 rounded-3xl text-purple-800 min-w-fit"><i class="fa-solid fa-crown mr-1.5"></i>Вакансия недели</span>
-                                    </div>
-                                    <div class="company-name py-2">
-                                        <h2 class="font-medium">JCat, сервис размещения объявлений</h2>
-                                    </div>
-                                    <div class="actions flex gap-2 flex-col sm:flex-row">
-                                        <button class="bg-sky-600 min-w-fit px-5 py-2.5 rounded-md text-white font-medium">Редактировать</button>
-                                        <button class="bg-slate-100 min-w-fit px-5 py-2.5 rounded-md text-black font-medium">Закрыть</button>
-                                    </div>
-                                </div>
-                            </div>
 
+                            {% for vacancy in myVacancy %}
                             <div class="job-card bg-white rounded-lg py-4" data-id={{ vacancy.id }}>
                                 <div class="top-card flex justify-between">
                                     <div>
-                                        <h1 class="font-medium text-xl capitalize">full-stack drupal-разработчик</h1>
-                                        <span>150 000,00 руб.</span>
-                                        <span class="capitalize">нижний новгород</span>
+                                        <h1 class="font-medium text-xl capitalize">{{ vacancy.title }}</h1>
+                                        <span>{{ vacancy.salary|intcomma }} руб.</span>
+                                        <span class="capitalize font-medium">{{ vacancy.location }}</span>
                                     </div>
                                     <a href="#" class="text-lg"><i class="fa-regular fa-star"></i></a>
                                 </div>
                                 <div class="card-content">
                                     <div class="py-2">
-                                        <p class="line-clamp-4">Вакансия компании: ООО "ЦИФРОВЫЕ РЕШЕНИЯ" ООО "Цифровые решения", г. Нижний Новгород Являемся аккредитованной IT-компанией. ИНН: 5260465945 Наша команда занимаемся разработкой и поддержкой крупных высоко-нагруженных российских и зарубежных проектов. Разработана собственная no-code платформа (входит в реестр российского ПО) Ищем Full-stack PHP-разработчика на CMS: Drupal 10 Заработная плата: 80-150 тыс. на руки. Годовые бонусы по результатам работы. Возможность карьерного и профессионального роста до руководящей должности. Что предлагаем? Удаленная работа. При желании можно работать в офисе в Нижнем Новгороде; Гибкий график график; Небольшая дружная команда без сильной</p>
+                                        <p class="line-clamp-4">{{ vacancy.description }}</p>
                                     </div>
-                                    <div class="flex gap-2 flex-wrap">
+                                    <div class="flex gap-2 pb-2 flex-wrap">
                                         <span class="py-1 px-3 bg-purple-200 rounded-3xl text-purple-800 min-w-fit"><i class="fa-solid fa-crown mr-1.5"></i>Вакансия недели</span>
                                     </div>
-                                    <div class="company-name py-2">
-                                        <h2 class="font-medium">JCat, сервис размещения объявлений</h2>
-                                    </div>
                                     <div class="actions flex gap-2 flex-col sm:flex-row">
-                                        <button class="bg-sky-600 min-w-fit px-5 py-2.5 rounded-md text-white font-medium">Редактировать</button>
-                                        <button class="bg-slate-100 min-w-fit px-5 py-2.5 rounded-md text-black font-medium">Закрыть</button>
+                                        <button class="bg-sky-600 min-w-fit px-4 py-2 rounded-md text-white font-medium" onclick="window.location='/edit-vacancy/{{ vacancy.id }}'">Редактировать</button>
+                                        <button class="bg-slate-100 min-w-fit px-4 py-2 rounded-md text-black font-medium" onclick="window.location='/delete-vacancy/{{ vacancy.id }}'">Закрыть</button>
                                     </div>
                                 </div>
                             </div>
+                            {% endfor %}
 
                         </div>
                     </div>

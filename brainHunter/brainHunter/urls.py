@@ -32,6 +32,8 @@ urlpatterns = [
     path('create-vacancy/', views.create_vacancy_view, name='creating_vacancy'),
     path('all-vacancy/', views.all_vacancy_view, name='all_vacancy'),
     path('logout/', views.logout_view, name='logout_view'),
+    path('edit-vacancy/<int:id>', views.edit_vacancy, name='edit_vacancy'),
+    path('delete-vacancy/<int:id>', views.delete_vacancy, name='delete_vacancy'),
 ]
 
 if settings.DEBUG:

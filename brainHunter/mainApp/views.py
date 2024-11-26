@@ -88,6 +88,7 @@ def create_vacancy_view(request):
     if not request.user.is_staff:
         return HttpResponse('У вас недостаточно прав')
     
+    company = Company.objects.get(user=request.user)
     
     if request.method == 'POST':
         vacancyTitle = request.POST['vacancyTitle']
@@ -103,15 +104,47 @@ def create_vacancy_view(request):
             salary = vacancySalary,
         )
 
-    return render(request, 'creating-vacancy.html')
+    return render(request, 'creating-vacancy.html', {'company': company})
 
 
 def edit_vacancy(request, id):
-    pass
+    try:
+        company = Company.objects.get(user=request.user)
+    except:
+        return HttpResponse('У вас недостаточно прав')
+    vacancyObj = Vacancy.objects.get(id=id)
+
+    if vacancyObj.company != company.name:
+        return HttpResponse('У вас недостаточно прав')
+
+    if request.method == 'POST':
+        vacancyObj.title = request.POST['vacancyTitle'].lower()
+        vacancyObj.salary = float(request.POST['vacancySalary'])
+        vacancyObj.location = request.POST['vacancyLocation'].lower()
+        vacancyObj.description = request.POST['vacancyDesc']
+        vacancyObj.save()
+        return redirect('all_vacancy')
+
+
+    return render(request, 'edit-vacancy.html', {'vacancyObj': vacancyObj, 'company': company})
 
 
 def delete_vacancy(request, id):
-    pass
+    try:
+        company = Company.objects.get(user=request.user)
+    except:
+        return HttpResponse('У вас недостаточно прав')
+    vacancyObj = Vacancy.objects.get(id=id)
+
+    if vacancyObj.company != company.name:
+        return HttpResponse('У вас недостаточно прав')
+
+    if request.method == 'POST':
+        vacancyObj.is_active = False
+        vacancyObj.save()
+        return redirect('all_vacancy')
+    
+    return render(request, 'delete.html', {'vacancyObj': vacancyObj, 'company': company})
 
 
 def all_vacancy_view(request):
@@ -119,9 +152,10 @@ def all_vacancy_view(request):
         return HttpResponse('У вас недостаточно прав')
     
     company = Company.objects.get(user=request.user)
+    myVacancy = Vacancy.objects.filter(company=company.name).order_by('-posted_at')
     
 
-    return render(request, 'all-vacancy.html', {'company': company})
+    return render(request, 'all-vacancy.html', {'company': company, 'myVacancy': myVacancy})
 
 
 def resume_view(request, id):
