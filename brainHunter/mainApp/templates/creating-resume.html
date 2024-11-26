@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Создание резюме - BrainHunter{% endblock title %}
+
+{% block main %}
+
+<div class="container max-w-[1280px] mx-auto px-4">
+    <div class="account-block bg-white my-4 px-6 py-8 rounded-lg">
+        <div class="max-w-[60em]">
+            <div class="contact-info border-b-[1px] my-1.5">
+                {% comment %} <span class="text-gray-600">Был на сайте сегодня в 15:28</span> {% endcomment %}
+                <h1 class="text-3xl font-semibold my-1.5">Фамилия Имя</h1>
+                <div class="flex items-center gap-1">
+                    <p>Пол:</p>
+                    <select class="text-lg my-1.5 bg-slate-100 rounded-md outline-none px-0.5">
+                        <option value="not set" selected="true" disabled>Не указан</option>
+                        <option value="male">Мужской</option>
+                        <option value="female">Женский</option>
+                    </select>
+                </div>
+                <div class="pb-2.5">
+                    <label for="">Местоположение:</label>
+                    <input class="text-lg my-1.5 bg-slate-100 px-1 py-0.5 rounded-md" placeholder="Город">
+                </div>
+            </div>
+            <div class="specialization-info">
+                <div class="flex flex-col">
+                    <h1 class="text-2xl font-semibold">Frontend-developer</h1>
+                    <h2 class="text-2xl font-semibold">115 000 руб. на руки</h2>
+                    <h3 class="text-xl">Специализация: Программист, разработчик</h3>
+                </div>
+                <div class="graphic-info py-3 flex flex-col">
+                    <span>Занятость: полная занятость, частичная занятость, проектная работа</span>
+                    <span>График работы: полный день, гибкий график, удаленная работа</span>
+                </div>
+                <div class="experience-info py-3 flex flex-col">
+                    <span class="text-2xl text-gray-600 leading-6">Опыт работы</span>
+                    <span class="text-2xl font-semibold">2 года, 6 месяцев</span>
+                </div>
+            </div>
+            <div class="skills-info py-3">
+                <h1 class="text-2xl text-gray-600 py-1">Навыки</h1>
+                <div class="flex flex-wrap gap-2">
+                    <div class="skill-card bg-slate-200 py-1.5 px-3 rounded-lg">Python</div>
+                    <div class="skill-card bg-slate-200 py-1.5 px-3 rounded-lg">HTML5</div>
+                    <div class="skill-card bg-slate-200 py-1.5 px-3 rounded-lg">CSS3</div>
+                    <div class="skill-card bg-slate-200 py-1.5 px-3 rounded-lg">Кроссбраузерная верстка</div>
+                    <div class="skill-card bg-slate-200 py-1.5 px-3 rounded-lg">Git</div>
+                    <div class="skill-card bg-slate-200 py-1.5 px-3 rounded-lg">Адаптивная верстка</div>
+                    <div class="skill-card bg-slate-200 py-1.5 px-3 rounded-lg">REST API</div>
+                    <div class="skill-card bg-slate-200 py-1.5 px-3 rounded-lg">jQuery</div>
+                    <div class="skill-card bg-slate-200 py-1.5 px-3 rounded-lg">REST</div>
+                    <div class="skill-card bg-slate-200 py-1.5 px-3 rounded-lg">JSON API</div>
+                </div>
+            </div>
+            <div class="about-info py-3">
+                <h1 class="text-2xl text-gray-600">Обо мне</h1>
+                <p>{{ profile.bio }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock main %}

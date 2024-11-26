@@ -77,7 +77,15 @@ def reg_view(request):
                 email = phoneNum,
                 password = make_password(password),
                 first_name = fioUser,
-            )
+        )
+
+        newuser = User.objects.get(username = username)
+        
+        Profile.objects.create(
+            user = newuser,
+            full_name = fioUser,
+            phone_number = phoneNum,
+        )
         
         return redirect('login_view')
 
@@ -162,6 +170,12 @@ def resume_view(request, id):
     profile = Profile.objects.get(user_id=id)
 
     return render(request, 'resume.html', {'profile': profile})
+
+
+def create_resume_view(request, id):
+    
+
+    return render(request, 'creating-resume.html')
 
 
 def logout_view(request):

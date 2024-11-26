@@ -34,6 +34,7 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout_view'),
     path('edit-vacancy/<int:id>', views.edit_vacancy, name='edit_vacancy'),
     path('delete-vacancy/<int:id>', views.delete_vacancy, name='delete_vacancy'),
+    path('create-resume/<int:id>', views.create_resume_view, name='create_resume'),
 ]
 
 if settings.DEBUG:
