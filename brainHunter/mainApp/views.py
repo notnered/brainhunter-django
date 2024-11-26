@@ -32,7 +32,7 @@ def vacancy_search_view(request):
             'searched_salary': searched_salary,
             })
     else:
-        vacancy_search = Vacancy.objects.all().order_by('-posted_at')
+        vacancy_search = Vacancy.objects.filter(is_active=True).order_by('-posted_at')
         return render(request, 'job-search.html', {
             'vacancy_search': vacancy_search,
             })
