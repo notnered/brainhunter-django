@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Закрытие Вакансии - BrainHunter{% endblock title %}
+
+{% block main %}
+
+<div class="container max-w-[1280px] mx-auto py-4">
+    <div class="bg-white">
+        <div class="flex">
+            <aside class="w-1/4 bg-slate-50 p-4">
+                <div class="logoBranding pb-2">
+                    <a href="{% url 'all_vacancy' %}" class="text-xl text-sky-900 font-semibold flex">{{ company.name }}</a>
+                </div>
+                <div class="menuAside pb-4">
+                    <ul class="flex flex-col gap-1.5">
+                        <li><a href="{% url 'all_vacancy' %}" class="text-gray-600 font-medium text-lg"><i class="fa-solid fa-suitcase w-8"></i>Мои вакансии</a></li>
+                        <li><a href="#" class="text-gray-600 font-medium text-lg"><i class="fa-solid fa-comments w-8"></i>Отклики</a></li>
+                        <li><a href="#" class="text-gray-600 font-medium text-lg"><i class="fa-solid fa-magnifying-glass w-8"></i>Поиск резюме</a></li>
+                        <li><a href="#" class="text-gray-600 font-medium text-lg"><i class="fa-solid fa-chart-simple w-8"></i>Статистика</a></li>
+                        <li><a href="{% url 'logout_view' %}" class="text-gray-600 font-medium text-lg"><i class="fa-solid fa-right-from-bracket w-8"></i>Выйти из аккаунта</a></li>
+                    </ul>
+                </div>
+                <div class="managerAside border-t-[1px] border-gray-300 py-4">
+                    <div class="ManagerInfo flex flex-col">
+                        <span>Ваш менеджер:</span>
+                        <span class="text-sky-950 font-semibold">{{ company.company_manager }}</span>
+                        <span class="text-sky-600 font-medium"><a href="mailto:{{ company.manager_email }}">{{ company.manager_email}}</a></span>
+                    </div>
+                </div>
+                <div class="companyID py-2">
+                    <span>ID компании: {{ company.company_id }}</span>
+                </div>
+            </aside>
+            <section class="w-3/4 bg-white p-4">
+                <div class="vacancyCreater max-w-[50em]">
+                    <div class="createrHeader pb-4">
+                        <h1 class="text-2xl font-semibold pt-2 pb-2">Закрытие вакансии</h1>
+                        <p class="text-gray-600">Вы уверены, что хотите это сделать?</p>
+                    </div>
+                    <form action="{% url 'delete_vacancy' vacancyObj.id %}" method="POST">
+                        {% csrf_token %}
+                        <div class="deleteConfirm flex gap-4">
+                            <button type="submit" class="py-1.5 px-2.5 min-w-fit bg-slate-200 text-black outline-none rounded-md">Да, закрыть вакансию</button>
+                            <button class="py-1.5 px-2.5 min-w-fit bg-sky-600 text-white outline-none rounded-md" onclick="event.preventDefault();window.location='/all-vacancy'">Нет, верните меня обратно</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+{% endblock main %}
