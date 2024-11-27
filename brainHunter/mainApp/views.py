@@ -183,6 +183,11 @@ def logout_view(request):
     return redirect('index_view')
 
 
+def create_application_view(request, id):
+    
+    pass
+
+
 @login_required
 def account_view(request):
     user = request.user
