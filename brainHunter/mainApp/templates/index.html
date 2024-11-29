@@ -8,10 +8,11 @@
 
 {% block main %}
 
-    <div id="modal" class="fixed flex top-0 bg-black/50 z-50 w-full h-full">
+    <div id="modal" class="fixed flex top-0 bg-black/50 z-50 w-full h-full hidden">
         <div class="applicationBlock w-full max-w-[640px] mx-auto h-fit max-h-[90%] my-auto py-4 px-4 bg-white rounded-lg">
             <div class="applicationContent relative">
                 <form id="formModal" action="#" method="POST">
+                    {% csrf_token %}
                     <div class="applicationClose absolute right-0 top-0">
                         <span id="closeModal" class="text-2xl text-sky-950 hover:text-sky-600 cursor-pointer"><i class="fa-solid fa-xmark"></i></span>
                     </div>
@@ -120,7 +121,7 @@
                                     <h2 class="font-medium">{{ vacancy.company }}</h2>
                                 </div>
                                 <div class="actions flex gap-2 flex-col sm:flex-row">
-                                    <button id="sendApplicationBtn" data-btn-id="{{ vacancy.id }}:{{ vacancy.company}}:" class="bg-sky-600 min-w-fit px-5 py-2.5 rounded-md text-white font-medium">Откликнуться</button>
+                                    <button id="sendApplicationBtn" data-btn-id="{{ vacancy.id }}:{{ vacancy.company }}:{{ vacancy.title }}:{{ vacancy.location }}: {{ vacancy.salary }}" class="bg-sky-600 min-w-fit px-5 py-2.5 rounded-md text-white font-medium">Откликнуться</button>
                                     <button class="bg-slate-100 min-w-fit px-5 py-2.5 rounded-md text-black font-medium">Позвонить</button>
                                 </div>
                             </div>
