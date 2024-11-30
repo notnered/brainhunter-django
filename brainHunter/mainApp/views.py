@@ -1,9 +1,9 @@
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.hashers import make_password
-from .models import Vacancy, Company, Profile
+from .models import Vacancy, Company, Profile, Application
 
 # Create your views here.
 
@@ -172,7 +172,10 @@ def resume_view(request, id):
     return render(request, 'resume.html', {'profile': profile})
 
 
+@login_required
 def create_resume_view(request, id):
+    if id is None:
+        return HttpResponse('Вы не вошли в аккаунт')
     
 
     return render(request, 'creating-resume.html')
@@ -184,8 +187,19 @@ def logout_view(request):
 
 
 def create_application_view(request, id):
-    
-    pass
+    if request.method == 'POST':
+        vacancy = get_object_or_404(Vacancy, id=id)
+        prof = get_object_or_404(Profile, user = request.user.id)
+        print(prof)
+        if not vacancy.is_active:
+            return HttpResponse('Ошибка. Вакансия добавлена в архив')
+        coverLetter = request.POST['coverLetter']
+        Application.objects.create(
+            profile = prof,
+            vacancy = vacancy,
+            cover_letter = coverLetter
+        )
+        return redirect('index_view')
 
 
 @login_required
