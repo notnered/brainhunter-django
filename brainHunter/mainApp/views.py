@@ -9,9 +9,15 @@ from .models import Vacancy, Company, Profile, Application
 
 
 def index_view(request):
-    vacancy = Vacancy.objects.filter(is_active=True).order_by('-posted_at')[:10]
+    vacancy = Vacancy.objects.filter(is_active=True).order_by('-posted_at')
+    vacancySlice = vacancy[:10]
 
-    return render(request, 'index.html', {'vacancy': vacancy})
+    if request.user.is_authenticated and not request.user.is_staff:
+        currentProfile = Profile.objects.get(user=request.user)
+        userApplications = Application.objects.filter(profile=currentProfile)
+        
+
+    return render(request, 'index.html', {'vacancyList': vacancySlice, 'userApplication': userApplications})
 
 
 def vacancy_search_view(request):
