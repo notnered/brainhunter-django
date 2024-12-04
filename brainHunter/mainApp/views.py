@@ -12,12 +12,15 @@ def index_view(request):
     vacancy = Vacancy.objects.filter(is_active=True).order_by('-posted_at')
     vacancySlice = vacancy[:10]
 
-    if request.user.is_authenticated and not request.user.is_staff:
-        currentProfile = Profile.objects.get(user=request.user)
-        userApplications = Application.objects.filter(profile=currentProfile)
-        
+    # if request.user.is_authenticated and not request.user.is_staff:
+    #     currentProfile = Profile.objects.get(user=request.user)
+    #     userApplications = Application.objects.filter(profile=currentProfile)
 
-    return render(request, 'index.html', {'vacancyList': vacancySlice, 'userApplication': userApplications})
+    # for i in vacancySlice:
+    #     i.age = 25
+    #     print(i.age)
+
+    return render(request, 'index.html', {'vacancyList': vacancySlice})
 
 
 def vacancy_search_view(request):
@@ -183,7 +186,6 @@ def create_resume_view(request, id):
     if id is None:
         return HttpResponse('Вы не вошли в аккаунт')
     
-
     return render(request, 'creating-resume.html')
 
 

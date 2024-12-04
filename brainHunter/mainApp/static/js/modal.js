@@ -14,14 +14,14 @@ const coverLetter = document.querySelector('#coverLetter');
 sendApplicationBtn.forEach((item) => {
     item.addEventListener('click', () => {
         let dataArray = (item.dataset.btnId).split(':');
-        console.log(dataArray);
+        // console.log(dataArray);
         openModal(dataArray);
     })
 })
 
 
 function openModal(data){
-    formModal.action = `create-application/${data[0]}`
+    formModal.action = `${window.location.origin}/create-application/${data[0]}`
     modal.classList.remove('hidden');
     modalName.textContent = data[2];
     modalSalary.textContent = `${data[4]} руб.`;

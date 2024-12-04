@@ -125,7 +125,7 @@
                                     <h2 class="font-medium">{{ vacancy.company }}</h2>
                                 </div>
                                 <div class="actions flex gap-2 flex-col sm:flex-row">
-                                    <button {% if request.user.is_authenticated %}{% for i in userApplication %} {% if i.vacancy != vacancy %} id="sendApplicationBtn" data-btn-id="{{ vacancy.id }}:{{ vacancy.company }}:{{ vacancy.title }}:{{ vacancy.location }}: {{ vacancy.salary }}" {% endif %} {% endfor %} {% endif %} class="{% if request.user.is_authenticated and i.vacancy != vacancy %}bg-sky-600 {% else %}bg-sky-600/70 {% endif %} min-w-fit px-5 py-2.5 rounded-md text-white font-medium">Откликнуться</button>
+                                    <button {% if request.user.is_authenticated %} id="sendApplicationBtn" data-btn-id="{{ vacancy.id }}:{{ vacancy.company }}:{{ vacancy.title }}:{{ vacancy.location }}: {{ vacancy.salary }}" {% endif %} class="{% if request.user.is_authenticated and i.vacancy != vacancy %}bg-sky-600 {% else %}bg-sky-600/70 {% endif %} min-w-fit px-5 py-2.5 rounded-md text-white font-medium">Откликнуться</button>
                                     <button class="bg-slate-100 min-w-fit px-5 py-2.5 rounded-md text-black font-medium">Позвонить</button>
                                 </div>
                             </div>
