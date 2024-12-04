@@ -62,11 +62,17 @@
                                         <p class="line-clamp-4">{{ vacancy.description }}</p>
                                     </div>
                                     <div class="flex gap-2 pb-2 flex-wrap">
-                                        <span class="py-1 px-3 bg-purple-200 rounded-3xl text-purple-800 min-w-fit"><i class="fa-solid fa-crown mr-1.5"></i>Вакансия недели</span>
+                                        {% comment %} <span class="py-1 px-3 bg-purple-200 rounded-3xl text-purple-800 min-w-fit"><i class="fa-solid fa-crown mr-1.5"></i>Вакансия недели</span> {% endcomment %}
+                                        <span>Статус объявления: {% if vacancy.is_active %}<span class="font-semibold text-sky-600">Активно</span>{% else %}<span class="font-semibold text-sky-800/70">Неактивно</span>{% endif %}</span>
                                     </div>
                                     <div class="actions flex gap-2 flex-col sm:flex-row">
+                                        {% if vacancy.is_active %}
                                         <button class="bg-sky-600 min-w-fit px-4 py-2 rounded-md text-white font-medium" onclick="window.location='/edit-vacancy/{{ vacancy.id }}'">Редактировать</button>
                                         <button class="bg-slate-100 min-w-fit px-4 py-2 rounded-md text-black font-medium" onclick="window.location='/delete-vacancy/{{ vacancy.id }}'">Закрыть</button>
+                                        {% else %}
+                                        <button class="bg-sky-600/70 min-w-fit px-4 py-2 rounded-md text-white font-medium cursor-not-allowed">Редактировать</button>
+                                        <button class="bg-slate-100 min-w-fit px-4 py-2 rounded-md text-black/70 font-medium cursor-not-allowed">Закрыть</button>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>

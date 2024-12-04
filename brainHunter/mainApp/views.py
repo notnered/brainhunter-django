@@ -31,6 +31,7 @@ def index_view(request):
 
 
 def vacancy_search_view(request):
+
     if request.GET.get('searched') or request.GET.get('city') or request.GET.get('salary'):
         searched = request.GET.get('searched').lower()
         searched_city = request.GET['city'].lower()
@@ -40,19 +41,43 @@ def vacancy_search_view(request):
         except:
             searched_salary = 0
         vacancy_search = Vacancy.objects.filter(is_active=True, title__icontains=searched, location__icontains=searched_city, salary__gte=searched_salary).order_by('-posted_at')
-        print('post', searched, searched_city, searched_salary)
+        # print('post', searched, searched_city, searched_salary)
+        
+        if request.user.is_authenticated and not request.user.is_staff:
+            currentProfile = Profile.objects.get(user=request.user)
+            userApplications = Application.objects.filter(profile=currentProfile)
+
+            for item in vacancy_search:
+                for application in userApplications:
+                    if item == application.vacancy:
+                        item.applicationSent = True
+
         return render(request, 'job-search.html', {
             'vacancy_search': vacancy_search,
             'searched': searched.capitalize(),
             'searched_city': searched_city.capitalize(),
             'searched_salary': searched_salary,
+            'userApplications': userApplications,
             })
     else:
         vacancy_search = Vacancy.objects.filter(is_active=True).order_by('-posted_at')
-        return render(request, 'job-search.html', {
-            'vacancy_search': vacancy_search,
-            })
 
+
+    if request.user.is_authenticated and not request.user.is_staff:
+        currentProfile = Profile.objects.get(user=request.user)
+        userApplications = Application.objects.filter(profile=currentProfile)
+
+        for item in vacancy_search:
+            for application in userApplications:
+                if item == application.vacancy:
+                    item.applicationSent = True
+    else:
+        userApplications = Application.objects.all()
+
+    return render(request, 'job-search.html', {
+            'vacancy_search': vacancy_search,
+            'userApplications': userApplications,
+            })
 
 
 def login_view(request):
@@ -205,7 +230,7 @@ def create_application_view(request, id):
     if request.method == 'POST':
         vacancy = get_object_or_404(Vacancy, id=id)
         prof = get_object_or_404(Profile, user = request.user.id)
-        print(prof)
+        # print(prof)
         if not vacancy.is_active:
             return HttpResponse('Ошибка. Вакансия добавлена в архив')
         coverLetter = request.POST['coverLetter']
@@ -222,8 +247,12 @@ def account_view(request):
     user = request.user
     try:
         userProfile = Profile.objects.get(user=user)
+        userApplications = Application.objects.filter(profile=userProfile)
     except:
         return redirect('all_vacancy')
 
-    return render(request, 'acc.html', {'userProfile': userProfile})
+    return render(request, 'acc.html', {
+        'userProfile': userProfile,
+        'userApplications': userApplications,
+        })
 

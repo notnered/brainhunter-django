@@ -21,6 +21,17 @@
             </div>
             <div class="border-t-[1px] py-1">
                 <h1 class="text-2xl">Мои отклики:</h1>
+
+                {% for application in userApplications %}
+
+                    <div>
+                        <p>{{ application.id }}. {{ application.vacancy }}</p>
+                        <p>{{ application.cover_letter }}</p>
+                        <p>{{ application.status }}</p>
+                    </div>
+
+                {% endfor %}
+
             </div>
         </div>
     </div>

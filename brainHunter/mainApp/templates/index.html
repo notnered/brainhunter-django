@@ -126,9 +126,9 @@
                                 </div>
                                 <div class="actions flex gap-2 flex-col sm:flex-row">
                                     {% if vacancy.applicationSent %}
-                                    <button class="min-w-fit px-5 py-2.5 rounded-md bg-sky-600/70 text-white font-medium">Отклик отправлен</button>
+                                    <button title="Отклик уже отправлен" class="min-w-fit px-5 py-2.5 rounded-md bg-sky-600/70 text-white font-medium">Отклик отправлен</button>
                                     {% else %}
-                                    <button {% if request.user.is_authenticated %} id="sendApplicationBtn" data-btn-id="{{ vacancy.id }}:{{ vacancy.company }}:{{ vacancy.title }}:{{ vacancy.location }}: {{ vacancy.salary }}" {% endif %} class="{% if request.user.is_authenticated and i.vacancy != vacancy %}bg-sky-600 {% else %}bg-sky-600/70 {% endif %} min-w-fit px-5 py-2.5 rounded-md text-white font-medium">Откликнуться</button>
+                                    <button {% if request.user.is_authenticated and not user.is_staff %} id="sendApplicationBtn" data-btn-id="{{ vacancy.id }}:{{ vacancy.company }}:{{ vacancy.title }}:{{ vacancy.location }}: {{ vacancy.salary }}" {% endif %} class="{% if request.user.is_authenticated and not user.is_staff %}bg-sky-600 {% else %}bg-sky-600/70 {% endif %} min-w-fit px-5 py-2.5 rounded-md text-white font-medium">Откликнуться</button>
                                     {% endif %}
                                     <button class="bg-slate-100 min-w-fit px-5 py-2.5 rounded-md text-black font-medium">Позвонить</button>
                                 </div>
