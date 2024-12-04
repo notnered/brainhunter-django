@@ -12,15 +12,22 @@ def index_view(request):
     vacancy = Vacancy.objects.filter(is_active=True).order_by('-posted_at')
     vacancySlice = vacancy[:10]
 
-    # if request.user.is_authenticated and not request.user.is_staff:
-    #     currentProfile = Profile.objects.get(user=request.user)
-    #     userApplications = Application.objects.filter(profile=currentProfile)
+    if request.user.is_authenticated and not request.user.is_staff:
+        currentProfile = Profile.objects.get(user=request.user)
+        userApplications = Application.objects.filter(profile=currentProfile)
 
-    # for i in vacancySlice:
-    #     i.age = 25
-    #     print(i.age)
+        for item in vacancySlice:
+            for application in userApplications:
+                if item == application.vacancy:
+                    item.applicationSent = True
+    else:
+        userApplications = Application.objects.all()
+                    
 
-    return render(request, 'index.html', {'vacancyList': vacancySlice})
+    return render(request, 'index.html', {
+        'vacancyList': vacancySlice,
+        'userApplications': userApplications,
+        })
 
 
 def vacancy_search_view(request):
