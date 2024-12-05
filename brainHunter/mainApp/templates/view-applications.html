@@ -2,7 +2,9 @@
 
 {% load static %}
 
-{% block title %}Закрытие Вакансии - BrainHunter{% endblock title %}
+{% load humanize %}
+
+{% block title %}Просмотр откликов - BrainHunter{% endblock title %}
 
 {% block main %}
 
@@ -34,18 +36,16 @@
                 </div>
             </aside>
             <section class="w-3/4 bg-white p-4">
-                <div class="vacancyCreater max-w-[50em]">
-                    <div class="createrHeader pb-4">
-                        <h1 class="text-2xl font-semibold pt-2 pb-2">Закрытие вакансии</h1>
-                        <p class="text-gray-600">Вы уверены, что хотите это сделать?</p>
+                <div class="allVacancy max-w-[50em]">
+                    <div class="vacancyHeader pb-4">
+                        <h1 class="text-2xl font-semibold pt-2 pb-4">Все отклики</h1>
+                        <p class="text-gray-600">Здесь указаны все отклики, на опубликованные вами вакансии</p>
                     </div>
-                    <form action="{% url 'delete_vacancy' vacancyObj.id %}" method="POST">
-                        {% csrf_token %}
-                        <div class="deleteConfirm flex gap-4">
-                            <button type="submit" class="py-1.5 px-2.5 min-w-fit bg-slate-200 text-black outline-none rounded-md">Да, закрыть вакансию</button>
-                            <button class="py-1.5 px-2.5 min-w-fit bg-sky-600 text-white outline-none rounded-md" onclick="event.preventDefault();window.location='/all-vacancy'">Нет, верните меня обратно</button>
-                        </div>
-                    </form>
+                    <div class="vacancyContent">
+
+
+
+                    </div>
                 </div>
             </section>
         </div>

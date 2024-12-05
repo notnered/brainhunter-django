@@ -37,6 +37,7 @@ urlpatterns = [
     path('create-resume/', views.create_resume_view, name='resume_required_login'),
     path('create-resume/<int:id>', views.create_resume_view, name='create_resume'),
     path('create-application/<int:id>', views.create_application_view, name='create_application'),
+    path('view-applications/', views.view_applications, name='view_applications'),
 ]
 
 if settings.DEBUG:

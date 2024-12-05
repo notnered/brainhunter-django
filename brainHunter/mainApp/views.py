@@ -256,3 +256,17 @@ def account_view(request):
         'userApplications': userApplications,
         })
 
+
+def view_applications(request):
+    if not request.user.is_staff:
+        return HttpResponse('У вас недостаточно прав')
+    
+    company = Company.objects.get(user=request.user)
+    myVacancy = Vacancy.objects.filter(company=company.name).order_by('-posted_at')
+    # companyApplications = Application.objects.filter()
+    
+    return render(request, 'view-applications.html', {
+        'company': company,
+    })
+
+
