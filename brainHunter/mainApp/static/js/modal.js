@@ -23,13 +23,13 @@ sendApplicationBtn.forEach((item) => {
 function openModal(data){
     formModal.action = `${window.location.origin}/create-application/${data[0]}`
     modal.classList.remove('hidden');
+    modalCompany.textContent = data[1];
     modalName.textContent = data[2];
+    modalLocation.textContent = data[3];
     modalSalary.textContent = `${data[4].toLocaleString('fr-FR', {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2,
     })} руб.`;
-    modalLocation.textContent = data[3];
-    modalCompany.textContent = data[1];
 }
 
 // for (let i = 0; i < vacancyID.length; i++){

@@ -263,10 +263,18 @@ def view_applications(request):
     
     company = Company.objects.get(user=request.user)
     myVacancy = Vacancy.objects.filter(company=company.name).order_by('-posted_at')
-    # companyApplications = Application.objects.filter()
+    allApplications = Application.objects.all()
+    companyApplications = []
+    for i in myVacancy:
+        for j in allApplications:
+            if j.vacancy == i:
+                companyApplications.append(j)
+            
+    print(companyApplications)
     
     return render(request, 'view-applications.html', {
         'company': company,
+        'companyApplications': companyApplications,
     })
 
 
