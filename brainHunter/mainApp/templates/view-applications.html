@@ -43,7 +43,28 @@
                     </div>
                     <div class="vacancyContent">
                     {% for application in companyApplications %}
-                    {{ application.profile }}
+                    <div class="job-card bg-white rounded-lg py-4">
+                        <div class="top-card flex justify-between">
+                            <div>
+                                <h1 class="font-medium text-xl capitalize">{{ application.profile }}</h1>
+                                <h1 class="font-medium text-xl capitalize">{{ application.vacancy }}</h1>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="py-2">
+                                {% comment %} <h1>Сопроводительное письмо</h1> {% endcomment %}
+                                <p class="line-clamp-4 font-medium">{{ application.cover_letter}}</p>
+                            </div>
+                            <div class="flex gap-2 pb-2 flex-wrap">
+                                {% comment %} <span class="py-1 px-3 bg-purple-200 rounded-3xl text-purple-800 min-w-fit"><i class="fa-solid fa-crown mr-1.5"></i>Вакансия недели</span> {% endcomment %}
+                                <span>Статус отклика: <span class="font-semibold text-sky-600">На рассмотрении</span></span>
+                            </div>
+                            <div class="actions flex gap-2 flex-col sm:flex-row">
+                                <button class="bg-sky-600 min-w-fit px-4 py-2 rounded-md text-white font-medium">Ответ на отклик</button>
+                                <button class="bg-slate-100 min-w-fit px-4 py-2 rounded-md text-black font-medium">Отказ</button>
+                            </div>
+                        </div>
+                    </div>
                     {% endfor %}
                     </div>
                 </div>
