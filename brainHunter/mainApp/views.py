@@ -45,12 +45,15 @@ def vacancy_search_view(request):
         
         if request.user.is_authenticated and not request.user.is_staff:
             currentProfile = Profile.objects.get(user=request.user)
-            userApplications = Application.objects.filter(profile=currentProfile)
+            if (currentProfile):
+                userApplications = Application.objects.filter(profile=currentProfile)
 
             for item in vacancy_search:
                 for application in userApplications:
                     if item == application.vacancy:
                         item.applicationSent = True
+        else:
+            userApplications = Application.objects.all()
 
         return render(request, 'job-search.html', {
             'vacancy_search': vacancy_search,
