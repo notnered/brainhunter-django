@@ -60,8 +60,8 @@
                                 <span>Статус отклика: <span class="font-semibold text-sky-600">На рассмотрении</span></span>
                             </div>
                             <div class="actions flex gap-2 flex-col sm:flex-row">
-                                <button class="bg-sky-600 min-w-fit px-4 py-2 rounded-md text-white font-medium">Ответ на отклик</button>
-                                <button class="bg-slate-100 min-w-fit px-4 py-2 rounded-md text-black font-medium">Отказ</button>
+                                <button class="bg-sky-600 min-w-fit px-4 py-2 rounded-md text-white font-medium" id="btnAnswer" data-id={{application.id}}>Ответ на отклик</button>
+                                <button class="bg-slate-100 min-w-fit px-4 py-2 rounded-md text-black font-medium" id="btnRefuse" data-id={{application.id}}>Отказ</button>
                             </div>
                         </div>
                     </div>
@@ -72,5 +72,7 @@
         </div>
     </div>
 </div>
+
+<script src="{% static "js/applicationApi.js" %}"></script>
 
 {% endblock main %}

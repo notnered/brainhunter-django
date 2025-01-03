@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
+from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -285,3 +286,7 @@ def view_applications(request):
     })
 
 
+def appilication_api(request, id):
+    return JsonResponse({
+        "yay": id
+    })
