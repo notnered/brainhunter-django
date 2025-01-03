@@ -213,8 +213,11 @@ def all_vacancy_view(request):
 
 
 def resume_view(request, id):
-    profile = Profile.objects.get(user_id=id)
-    profileSkills = profile.skills.all()
+    try:
+        profile = Profile.objects.get(user_id=id)
+        profileSkills = profile.skills.all()
+    except:
+        return HttpResponse('There is no user profile with such id')
 
     return render(request, 'resume.html', {
         'profile': profile,
@@ -270,14 +273,17 @@ def view_applications(request):
     if not request.user.is_staff:
         return HttpResponse('У вас недостаточно прав')
     
-    company = Company.objects.get(user=request.user)
-    myVacancy = Vacancy.objects.filter(company=company.name).order_by('-posted_at')
-    allApplications = Application.objects.all()
-    companyApplications = []
-    for i in myVacancy:
-        for j in allApplications:
-            if j.vacancy == i:
-                companyApplications.append(j)
+    try:
+        company = Company.objects.get(user=request.user)
+        myVacancy = Vacancy.objects.filter(company=company.name).order_by('-posted_at')
+        allApplications = Application.objects.all()
+        companyApplications = []
+        for i in myVacancy:
+            for j in allApplications:
+                if j.vacancy == i:
+                    companyApplications.append(j)
+    except:
+        return HttpResponse('Cant find such company')
             
     # print(companyApplications)
     
@@ -288,9 +294,20 @@ def view_applications(request):
 
 
 def appilication_api(request, id):
-    application = Application.objects.get(id=id)
+    try:
+        application = Application.objects.get(id=id)
+    except:
+        return JsonResponse({
+            'error': 'Cant find application with this id',
+            'success': False,
+        }) 
     if request.method == 'POST':
         jsondata = json.loads(request.body)
+        if jsondata['newStatus'] != 'accepted' or jsondata['newStatus'] != 'rejected':
+            return JsonResponse({
+                'error': 'New status is not valid',
+                'success': False,
+            }) 
         application.status = jsondata['newStatus']
         application.save()
         return JsonResponse({
@@ -298,3 +315,5 @@ def appilication_api(request, id):
             "application_status": application.status,
             "success": True,
         })
+    else:
+        return HttpResponse('Only POST request allowed')
