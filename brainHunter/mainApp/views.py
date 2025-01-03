@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.hashers import make_password
 from .models import Vacancy, Company, Profile, Application
+import json
 
 # Create your views here.
 
@@ -278,7 +279,7 @@ def view_applications(request):
             if j.vacancy == i:
                 companyApplications.append(j)
             
-    print(companyApplications)
+    # print(companyApplications)
     
     return render(request, 'view-applications.html', {
         'company': company,
@@ -287,6 +288,13 @@ def view_applications(request):
 
 
 def appilication_api(request, id):
-    return JsonResponse({
-        "yay": id
-    })
+    application = Application.objects.get(id=id)
+    if request.method == 'POST':
+        jsondata = json.loads(request.body)
+        application.status = jsondata['newStatus']
+        application.save()
+        return JsonResponse({
+            "id": id,
+            "application_status": application.status,
+            "success": True,
+        })

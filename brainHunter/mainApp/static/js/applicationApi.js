@@ -1,34 +1,28 @@
 const btnsAnswer = document.querySelectorAll('#btnAnswer');
 
-// const number = 1;
-// const fetchFunction = () => {
-//     const result = fetch(`${location.origin}/api/application/${number}`);
-//     result.then((data) => {
-//         data = data.json();
-//         return data;
-//     }).then((data) => {
-//         console.log(data);
-//     })
-// }
-
-// btnAnswer.addEventListener('click', fetchData);
-
-// btnsAnswer.forEach((element) => {
-//     element.addEventListener('click', fetchData(1));
-// })
-
 btnsAnswer.forEach((btn) => {
     btn.addEventListener('click', sendAnswer);
 })
 
 function sendAnswer(e){
     const applicationID = e.target.dataset.id;
-    console.log(applicationID);
-    fetchData(applicationID);
+    const csrf = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    const answer = e.target.value;
+    fetchData(applicationID, answer, csrf);
 }
 
-async function fetchData(id){
-    const result = await fetch(`${location.origin}/api/application/${id}`);
+async function fetchData(id, newStatus, csrf){
+    const result = await fetch(`${location.origin}/api/application/${id}`, {
+        method: 'POST',
+        headers: {
+            "X-CSRFToken": csrf,
+        },
+        body: JSON.stringify({
+            id: id,
+            newStatus: newStatus,
+        })
+    });
     const data = await result.json();
-    console.log(data);
+    // console.log(data);
+    location.reload();
 }

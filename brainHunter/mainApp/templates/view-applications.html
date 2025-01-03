@@ -42,6 +42,7 @@
                         <p class="text-gray-600">Здесь указаны все отклики, на опубликованные вами вакансии</p>
                     </div>
                     <div class="vacancyContent">
+                    <span id="csrf">{% csrf_token %}</span>
                     {% for application in companyApplications %}
                     <div class="job-card bg-white rounded-lg py-4">
                         <div class="top-card flex justify-between">
@@ -57,11 +58,18 @@
                             </div>
                             <div class="flex gap-2 pb-2 flex-wrap">
                                 {% comment %} <span class="py-1 px-3 bg-purple-200 rounded-3xl text-purple-800 min-w-fit"><i class="fa-solid fa-crown mr-1.5"></i>Вакансия недели</span> {% endcomment %}
-                                <span>Статус отклика: <span class="font-semibold text-sky-600">На рассмотрении</span></span>
+                                <span>Статус отклика: <span class="font-semibold text-sky-600">
+                                    {% if application.status == 'accepted' %}Принят
+                                    {% elif application.status == 'pending' %}Ожидает отклика
+                                    {% elif application.status == 'rejected' %}Отклонен
+                                    {% else %}Неизвестный статус
+                                    {% endif %}
+                                    </span>
+                                </span>
                             </div>
                             <div class="actions flex gap-2 flex-col sm:flex-row">
-                                <button class="bg-sky-600 min-w-fit px-4 py-2 rounded-md text-white font-medium" id="btnAnswer" data-id={{application.id}}>Ответ на отклик</button>
-                                <button class="bg-slate-100 min-w-fit px-4 py-2 rounded-md text-black font-medium" id="btnRefuse" data-id={{application.id}}>Отказ</button>
+                                <button class="bg-sky-600 min-w-fit px-4 py-2 rounded-md text-white font-medium" id="btnAnswer" value="accepted" data-id={{application.id}}>Ответ на отклик</button>
+                                <button class="bg-slate-100 min-w-fit px-4 py-2 rounded-md text-black font-medium" id="btnAnswer" value="rejected" data-id={{application.id}}>Отказ</button>
                             </div>
                         </div>
                     </div>
