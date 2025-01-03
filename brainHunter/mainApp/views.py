@@ -212,8 +212,12 @@ def all_vacancy_view(request):
 
 def resume_view(request, id):
     profile = Profile.objects.get(user_id=id)
+    profileSkills = profile.skills.all()
 
-    return render(request, 'resume.html', {'profile': profile})
+    return render(request, 'resume.html', {
+        'profile': profile,
+        'profileSkills': profileSkills,
+        })
 
 
 @login_required
@@ -250,7 +254,7 @@ def account_view(request):
     user = request.user
     try:
         userProfile = Profile.objects.get(user=user)
-        userApplications = Application.objects.filter(profile=userProfile)
+        userApplications = Application.objects.filter(profile=userProfile)[:3]
     except:
         return redirect('all_vacancy')
 

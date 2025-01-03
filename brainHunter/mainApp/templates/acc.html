@@ -11,8 +11,7 @@
         <div class="max-w-[60em]">
             <div class="contact-info border-b-[1px] pt-1 pb-2">
                 <h1 class="text-3xl font-semibold my-1.5">{{ user.first_name }}</h1>
-                <p class="text-lg my-1">{{ userProfile.birth_date }}</p>
-                <p class="text-lg my-1">{{ userProfile.location }}</p>
+                <p class="text-lg">{{ userProfile.birth_date }} | {{ userProfile.location }}</p>
                 <a href="{% url 'logout_view' %}" class="text-sky-600">Выйти из аккаунта</a>
             </div>
             <div class="about-info pt-1 pb-2">
@@ -20,17 +19,25 @@
                 <p>{{ userProfile.bio }}</p>
             </div>
             <div class="border-t-[1px] py-1">
-                <h1 class="text-2xl">Мои отклики:</h1>
+                <h1 class="text-2xl py-2">Мои отклики:</h1>
 
+                <div class="flex flex-col gap-y-4">
                 {% for application in userApplications %}
-
-                    <div>
-                        <p>{{ application.id }}. {{ application.vacancy }}</p>
-                        <p>{{ application.cover_letter }}</p>
-                        <p>{{ application.status }}</p>
+                    <div class="py-1 px-1 rounded-lg">
+                        <div class="flex flex-col">
+                            <p class="font-medium flex gap-x-1 text-lg capitalize py-1"><span class="bg-sky-600 text-white px-1 rounded-lg text-base flex items-center justify-center">{{ application.id }}</span>{{ application.vacancy }}</p>
+                            <p>Сопровождающее письмо:</p>
+                            <p>{{ application.cover_letter }}</p>
+                            <p class="font-medium py-1">Статус заявки: {{ application.status }}</p>
+                            <div class="application-action flex gap-x-1 py-1">
+                                <button class="bg-sky-600 px-2 py-1 rounded-lg text-white font-medium">Отменить заявку</button>
+                                <button class="bg-gray-200 px-2 py-1 rounded-lg font-medium">Редактировать</button>
+                            </div>
+                        </div>
                     </div>
-
+                    <hr>
                 {% endfor %}
+                </div>
 
             </div>
         </div>

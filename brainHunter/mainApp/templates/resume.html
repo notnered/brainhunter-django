@@ -16,35 +16,32 @@
                 <p class="text-lg my-1.5">{{ profile.location }}, готов к переезду, готов к командировкам</p>
             </div>
             <div class="specialization-info">
-                <div class="flex flex-col">
+                <div class="flex flex-col pb-3">
                     <h1 class="text-2xl font-semibold">Frontend-developer</h1>
                     <h2 class="text-2xl font-semibold">115 000 руб. на руки</h2>
                     <h3 class="text-xl">Специализация: Программист, разработчик</h3>
                 </div>
+                <hr>
                 <div class="graphic-info py-3 flex flex-col">
                     <span>Занятость: полная занятость, частичная занятость, проектная работа</span>
                     <span>График работы: полный день, гибкий график, удаленная работа</span>
                 </div>
+                <hr>
                 <div class="experience-info py-3 flex flex-col">
                     <span class="text-2xl text-gray-600 leading-6">Опыт работы</span>
                     <span class="text-2xl font-semibold">2 года, 6 месяцев</span>
                 </div>
             </div>
+            <hr>
             <div class="skills-info py-3">
                 <h1 class="text-2xl text-gray-600 py-1">Навыки</h1>
                 <div class="flex flex-wrap gap-2">
-                    <div class="skill-card bg-slate-200 py-1.5 px-3 rounded-lg">Python</div>
-                    <div class="skill-card bg-slate-200 py-1.5 px-3 rounded-lg">HTML5</div>
-                    <div class="skill-card bg-slate-200 py-1.5 px-3 rounded-lg">CSS3</div>
-                    <div class="skill-card bg-slate-200 py-1.5 px-3 rounded-lg">Кроссбраузерная верстка</div>
-                    <div class="skill-card bg-slate-200 py-1.5 px-3 rounded-lg">Git</div>
-                    <div class="skill-card bg-slate-200 py-1.5 px-3 rounded-lg">Адаптивная верстка</div>
-                    <div class="skill-card bg-slate-200 py-1.5 px-3 rounded-lg">REST API</div>
-                    <div class="skill-card bg-slate-200 py-1.5 px-3 rounded-lg">jQuery</div>
-                    <div class="skill-card bg-slate-200 py-1.5 px-3 rounded-lg">REST</div>
-                    <div class="skill-card bg-slate-200 py-1.5 px-3 rounded-lg">JSON API</div>
+                    {% for skill in profileSkills %}
+                        <div class="skill-card bg-slate-200 py-1.5 px-3 rounded-lg">{{skill.name}}</div>
+                    {% endfor %}
                 </div>
             </div>
+            <hr>
             <div class="about-info py-3">
                 <h1 class="text-2xl text-gray-600">Обо мне</h1>
                 <p>{{ profile.bio }}</p>
