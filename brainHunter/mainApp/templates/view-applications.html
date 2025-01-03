@@ -68,8 +68,8 @@
                                 </span>
                             </div>
                             <div class="actions flex gap-2 flex-col sm:flex-row">
-                                <button class="bg-sky-600 min-w-fit px-4 py-2 rounded-md text-white font-medium" id="btnAnswer" value="accepted" data-id={{application.id}}>Ответ на отклик</button>
-                                <button class="bg-slate-100 min-w-fit px-4 py-2 rounded-md text-black font-medium" id="btnAnswer" value="rejected" data-id={{application.id}}>Отказ</button>
+                                <button class="{% if application.status != 'pending' %}bg-sky-600/70{% else %}bg-sky-600{% endif %} min-w-fit px-4 py-2 rounded-md text-white font-medium" id="btnAnswer" {% if application.status != 'pending' %}disabled{% endif %} value="accepted" data-id={{application.id}}>Ответ на отклик</button>
+                                <button class="bg-slate-100 min-w-fit px-4 py-2 rounded-md {% if application.status != 'pending' %}text-black/70{% else %}text-black{% endif %} font-medium" id="btnAnswer" {% if application.status != 'pending' %}disabled{% endif %} value="rejected" data-id={{application.id}}>Отказ</button>
                             </div>
                         </div>
                     </div>
