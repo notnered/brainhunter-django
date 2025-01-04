@@ -242,7 +242,6 @@ def create_application_view(request, id):
     if request.method == 'POST':
         vacancy = get_object_or_404(Vacancy, id=id)
         prof = get_object_or_404(Profile, user = request.user.id)
-        # print(prof)
         if not vacancy.is_active:
             return HttpResponse('Ошибка. Вакансия добавлена в архив')
         coverLetter = request.POST['coverLetter']
