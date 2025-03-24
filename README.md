@@ -1,3 +1,2 @@
-doing my course work right here, nothing special (i guess)
+here is my yet another pet-project, that i did on django with plain js for scripts and tailwind for styling
 <br />
-built with plain js, tailwindcss and django as backend with a few libs
